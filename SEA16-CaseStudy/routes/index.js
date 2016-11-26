@@ -6,17 +6,23 @@ var Cart = require('../models/cart');
 var Product = require('../models/product');
 var Order = require('../models/order');
 
+var searchCriteria = false;
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var successMsg = req.flash('success')[0];
-  Product.find(function(err, docs) {
-    var productChunks = [];
-    var chunkSize = 3;
-    for (var i = 0; i < docs.length; i += chunkSize) {
-      productChunks.push(docs.slice(i, i + chunkSize));
-    }
-    res.render('shop/index', {title: 'Shopping Cart', products: productChunks, successMsg: successMsg, noMessage: !successMsg});
-  })
+  console.log(searchCriteria);
+  if (searchCriteria == false) {
+    console.log("rendering products");
+    Product.find(function(err, docs) {
+      var productChunks = [];
+      var chunkSize = 3;
+      for (var i = 0; i < docs.length; i += chunkSize) {
+        productChunks.push(docs.slice(i, i + chunkSize));
+      }
+      res.render('shop/index', {title: 'Shopping Cart', products: productChunks, successMsg: successMsg, noMessage: !successMsg});
+    })
+  }
 });
 
 router.get('/add-to-cart/:id', function(req, res, next) {
@@ -104,14 +110,39 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
   });
 })
 
-// ==============================================
-router.get('/search', function(req, res, next){
+router.post('/search', function(req, res, next){
 
- // input value from search
- var val = req.query.criteria;
- res.send(val);
+ var val = req.body.search;
+
+ console.log("search criteria: " + val);
+
+ if (val != "") {
+   searchCriteria = true;
+   var successMsg = req.flash('success')[0];
+   Product.find({$text:{$search: val}}, function(err, docs) {
+     if(docs != null) {
+       console.log("got search results");
+       var productChunks = [];
+       var chunkSize = 3;
+       for (var i = 0; i < docs.length; i += chunkSize) {
+         productChunks.push(docs.slice(i, i + chunkSize));
+       }
+       searchCriteria = false;
+       res.render('shop/index', {title: 'Shopping Cart', products: productChunks, successMsg: successMsg, noMessage: !successMsg});
+
+     } else {
+       console.log("didn't find anything");
+     }
+     if (err) {
+       console.log(err);
+     }
+
+   });
+ }
 
 });
+
+
 // ==============================================
 
 module.exports = router;

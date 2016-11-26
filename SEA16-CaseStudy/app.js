@@ -15,6 +15,7 @@ var MongoStore = require('connect-mongo')(session);
 
 var routes = require('./routes/index');
 var userRoutes = require('./routes/user');
+var staffRoutes = require('./routes/staff');
 
 var app = express();
 
@@ -52,6 +53,8 @@ app.use(function(req, res, next) {
   next();
 })
 
+
+app.use('/staff', staffRoutes);
 app.use('/user', userRoutes);
 app.use('/', routes);
 

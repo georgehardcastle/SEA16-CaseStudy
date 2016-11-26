@@ -7,37 +7,37 @@ var products = [
   new Product({
   imagePath: 'http://clientimages.teamtalk.com/12/12/1024x768/1_2879175.jpg',
   title: 'Sky Cycle Team 1',
-  description: 'Visit the velodrome to cycle with the current members of team Sky.',
+  description: 'Visit',
   price: 150
   }),
   new Product({
   imagePath: 'http://clientimages.teamtalk.com/12/12/1024x768/1_2879175.jpg',
   title: 'Sky Cycle Team 2',
-  description: 'Visit the velodrome to cycle with the current members of team Sky.',
+  description: 'Velodrome',
   price: 150
   }),
   new Product({
   imagePath: 'http://clientimages.teamtalk.com/12/12/1024x768/1_2879175.jpg',
   title: 'Sky Cycle Team 3',
-  description: 'Visit the velodrome to cycle with the current members of team Sky.',
+  description: 'Members',
   price: 150
   }),
   new Product({
   imagePath: 'http://clientimages.teamtalk.com/12/12/1024x768/1_2879175.jpg',
   title: 'Sky Cycle Team 4',
-  description: 'Visit the velodrome to cycle with the current members of team Sky.',
+  description: 'Current',
   price: 150
   }),
   new Product({
   imagePath: 'http://clientimages.teamtalk.com/12/12/1024x768/1_2879175.jpg',
   title: 'Sky Cycle Team 5',
-  description: 'Visit the velodrome to cycle with the current members of team Sky.',
+  description: 'Flump',
   price: 150
   }),
   new Product({
   imagePath: 'http://clientimages.teamtalk.com/12/12/1024x768/1_2879175.jpg',
   title: 'Sky Cycle Team 6',
-  description: 'Visit the velodrome to cycle with the current members of team Sky.',
+  description: 'Lycra',
   price: 150
   }),
 ];
