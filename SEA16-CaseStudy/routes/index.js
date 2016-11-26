@@ -11,9 +11,7 @@ var searchCriteria = false;
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var successMsg = req.flash('success')[0];
-  console.log(searchCriteria);
   if (searchCriteria == false) {
-    console.log("rendering products");
     Product.find(function(err, docs) {
       var productChunks = [];
       var chunkSize = 3;
@@ -35,7 +33,6 @@ router.get('/add-to-cart/:id', function(req, res, next) {
     }
     cart.add(product, product.id);
     req.session.cart = cart;
-    console.log(req.session.cart);
     res.redirect('/');
   })
 });
@@ -102,6 +99,18 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
       name: req.body.name,
       paymentId: charge.id
     });
+
+    for ( var productID in cart.items ) {
+      var itemQty = cart.items[productID].qty;
+      var product = cart.items[productID].item;
+
+      var newStockLevel = product.stockLevel - itemQty;
+
+      Product.update({ _id: product._id }, { $set: { stockLevel: newStockLevel }}, function (err, raw) {
+        if (err) return handleError(err);
+      });
+
+    }
     order.save(function(err, result) {
       req.flash('success', 'Successfully bought product!');
       req.session.cart = null;
@@ -114,14 +123,11 @@ router.post('/search', function(req, res, next){
 
  var val = req.body.search;
 
- console.log("search criteria: " + val);
-
  if (val != "") {
    searchCriteria = true;
    var successMsg = req.flash('success')[0];
    Product.find({$text:{$search: val}}, function(err, docs) {
      if(docs != null) {
-       console.log("got search results");
        var productChunks = [];
        var chunkSize = 3;
        for (var i = 0; i < docs.length; i += chunkSize) {
@@ -129,21 +135,15 @@ router.post('/search', function(req, res, next){
        }
        searchCriteria = false;
        res.render('shop/index', {title: 'Shopping Cart', products: productChunks, successMsg: successMsg, noMessage: !successMsg});
-
      } else {
        console.log("didn't find anything");
      }
      if (err) {
        console.log(err);
      }
-
    });
  }
-
 });
-
-
-// ==============================================
 
 module.exports = router;
 
