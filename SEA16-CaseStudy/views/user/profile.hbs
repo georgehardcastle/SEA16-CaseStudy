@@ -20,3 +20,29 @@
     {{/each}}
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+      <div>
+        <h2>My Details</h2>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>First Name:</strong> {{ user.firstname }}</li>
+                <li class="list-group-item"><strong>Last Name:</strong> {{ user.lastname }}</li>
+                <li class="list-group-item"><strong>First Line of Address:</strong> {{ user.firstlineofaddress}}</li>
+                <li class="list-group-item"><strong>Town:</strong> {{ user.town }}</li>
+                <li class="list-group-item"><strong>Postcode:</strong> {{ user.postcode}}</li>
+                <li class="list-group-item"><strong>Contact Number:</strong> {{ user.contactnumber }}</li>
+                <li class="list-group-item"><strong>Email:</strong> {{ user.email}}</li>
+                <br><br>
+                <form action="/user/profile" method="post" id="edit-form">
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                <button type="submit" class="btn btn-success">Edit Details</button>
+              </form>
+            </ul>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
