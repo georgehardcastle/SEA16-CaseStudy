@@ -1,0 +1,37 @@
+{{> header}}
+
+<div id="index-hero">
+  <div class="search-box">
+    <form action="/search/" method="post">
+        <input name="search" type="text" placeholder="Search Experiences"><button type="submit" class="sky-blue-bg"><i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
+    </form>
+  </div>
+  <div class="custom-col-t-12">
+    <div class="alert-img-overlay" {{#if noMessage}}hidden{{/if}}>
+      {{ successMsg }}
+    </div>
+  </div>
+</div>
+
+<div class="custom-row thumbnail-grp-container radial-bg">
+{{# each products }}
+    {{# each this }}
+      <div class="custom-col-t-6 custom-col-d-4 thumbnail-container">
+        <div class="product-thumbnail">
+            <img class="product-thumbnail-img" src="{{ this.imagePath }}" alt="...">
+            <div class="product-thumbnail-info">
+              <h3>{{ this.title }}</h3>
+              <p>{{ this.description  }}</p>
+              <div>
+                <div>£{{ this.price }}</div>
+                <a href="/add-to-cart/{{this._id}}">Add to Basket</a>
+              </div>
+              <div>{{ this.stockLevel }} in stock</div>
+            </div>
+          </div>
+      </div>
+    {{/each}}
+{{/each}}
+</div>
+
+<!-- <script src="javascripts/search.js"></script> -->
