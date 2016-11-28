@@ -42,6 +42,7 @@ router.post('/edit', isLoggedIn, function(req, res, next) {
     if (err) {
       return res.write('Error!');
     }
+    
 
     User.update({ email: req.user.email}, { $set: { firstname: req.body.firstname,
                                                       lastname: req.body.lastname,
