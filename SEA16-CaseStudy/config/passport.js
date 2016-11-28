@@ -92,3 +92,39 @@ passport.use('local.signin', new LocalStrategy({
     return done(null, user);
   });
 }));
+
+
+passport.use('local.edit', new LocalStrategy({
+
+  usernameField: 'email',
+  passwordField: 'password',
+  passReqToCallback: true
+}, function(req, email, password, done) {
+
+  req.checkBody('firstname', 'Invalid firstname').notEmpty().isLength({min:2});
+  req.checkBody('lastname', 'Invalid lastname').notEmpty().isLength({min:2});
+  req.checkBody('firstlineofaddress', 'Invalid first line of address').notEmpty().isLength({min:4});
+  req.checkBody('town', 'Invalid town').notEmpty().isLength({min:2});
+  req.checkBody('postcode', 'Invalid postcode').notEmpty().isLength({min:4});
+  req.checkBody('contactnumber', 'Invalid contact number').notEmpty().isLength({min:4});
+
+  if (errors) {
+    var messages = [];
+    errors.forEach(function(error) {
+      messages.push(error.msg);
+    });
+    return done(null, false, req.flash('error', messages));
+  }
+  User.findOne({'email': email}, function(err, user) {
+    if (err) {
+      return done(err);
+    }
+    if (!user) {
+      return done(null, false, {message: 'No user found'});
+    }
+    if (!user.validPassword(password)) {
+      return done(null, false, {message: 'Wrong password'});
+    }
+    return done(null, user);
+  });
+}));
