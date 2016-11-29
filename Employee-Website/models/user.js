@@ -23,4 +23,6 @@ userSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 }
 
+userSchema.index({ email: 'text', firstname: 'text', lastname: 'text', postcode: 'text', contactnumber: 'text'});
+
 module.exports = mongoose.model('User', userSchema);

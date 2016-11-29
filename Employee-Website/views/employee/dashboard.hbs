@@ -1,24 +1,39 @@
 {{> header}}
 
-<div class="custom-col-d-6">
-  <h4>Customer Details</h4>
-  <hr></hr>
-  <ul>
-    {{# each customers }}
-      <li><strong> {{ this.firstname }} {{ this.lastname }}</strong></li>
-      <div class="customer-additional-info">
-        <ul>
+<div class="spacer-100"></div>
+<div class="radial-bg fixed-bg"></div>
+<div class="custom-col-d-6 dash-tile">
+  <div class="g-search-box-container">
+    <form action="/search/" method="post">
+        <input class="g-search-box-input" name="search" type="text" placeholder="Search Customers"><button type="submit" class="sky-blue-bg g-search-box-submit"><i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
+    </form>
+  </div>
+  <div class="box-shadow">
+    <div class="dash-info-container">
+      {{# each customers }}
+        <ul class="customer-details">
+          <li><strong> {{ this.firstname }} {{ this.lastname }}</strong></li>
           <li>{{ this.firstlineofaddress }}</li>
           <li>{{ this.town }}</li>
           <li>{{ this.postcode }}</li>
           <li>{{ this.contactnumber }}</li>
+          <li class="customer-email"><i>{{ this.email }}</i></li>
         </ul>
-      </div>
-      <hr>
-    {{/each}}
-  </ul>
+      {{/each}}
+    </div>
+  </div>
 </div>
 
-<div class="custom-col-d-6">
-  <h4>Orders</h4>
+<!-- HANDLEBARS TEMPLATE -->
+<script id="order-template" type="text/x-handlebars-template">
+  <h1> Test </h1>
+  <h4> name: {{ data }} </h4>
+</script>
+
+<div id="order-info" class="custom-col-d-6 dash-tile" style="border: 1px solid red;"></div>
+
+<div class="custom-col-d-12 dash-tile">
+  <h4>Catalog</h4>
 </div>
+
+<script src="javascripts/dashboard.js"></script>

@@ -10,9 +10,16 @@ html, body {
   height: 100%;
   overflow-x: hidden;
 }
-/*.padding-30 {
-  padding: 30px;
-}*/
+.spacer-100 {
+  height: 100px;
+}
+nav {
+  background-color: white;
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+}
 .sky-blue {
   color: rgb(0,115,197);
 }
@@ -30,6 +37,9 @@ html, body {
   position: relative;
   top: -180px;
   border: 5px solid rgba(255,255,255,0.3);
+  box-shadow: 0px 0px 20px -2px rgba(50,50,50,.25);
+}
+.box-shadow {
   box-shadow: 0px 0px 20px -2px rgba(50,50,50,.25);
 }
 .product-thumbnail-img {
@@ -50,6 +60,7 @@ html, body {
 .navbar {
   height: 80px;
   padding: 10px 15px;
+  position: relative;
 }
 #navbar-logo {
   height: 82px;
@@ -113,7 +124,15 @@ html, body {
 }
 /* MAIN BG */
 .radial-bg {
-  background: radial-gradient(white, rgb(220,220,220)); /* Standard syntax */
+  background: radial-gradient(white, rgb(230,230,230)); /* Standard syntax */
+}
+.fixed-bg {
+  position: fixed;
+  top:0;
+  left:0;
+  height: 100%;
+  width: 100%;
+  z-index: -100;
 }
 /* ALERTS */
 .alert-img-overlay {
@@ -121,6 +140,49 @@ html, body {
   text-align: center;
   padding: 35px;
   font-size: 4rem;
+}
+/* SEARCH BOX */
+.dash-tile {
+  height: 500px;
+  padding: 20px;
+}
+.g-search-box-container {
+  position: relative;
+  width: 100%;
+  height: 50px;
+}
+.g-search-box-input {
+  width: 100%;
+  height: 50px;
+  padding-right: 70px;
+  padding-left: 20px;
+}
+.g-search-box-input:focus {
+  outline: none;
+}
+.g-search-box-submit {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 0;
+  right: 0;
+  color: white;
+}
+.dash-info-container {
+  overflow-y: scroll;
+  height: 400px;
+  background-color: rgb(245,245,245);
+}
+.dash-info-container ul {
+  padding:10px;
+  margin:0;
+  border-bottom: 1px solid rgb(235,235,235);
+}
+.customer-click {
+  cursor: pointer;
+}
+.dash-info-container ul:hover {
+  background-color: rgb(235,235,235);
 }
 /* RESPONSIVE */
 .custom-row::after {
