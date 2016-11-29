@@ -10,12 +10,22 @@
             {{# each this.items }}
               <li class="list-group-item">
                 <span class="badge">{{ this.price }}</span>
-                {{ this.item.title }} | {{ this.qty }} Units |
+                {{ this.item.title }} | {{ this.qty }} Units
               </li>
             {{/each}}
+
           </ul>
+          {{#if true}}  {{!replace with check to see if statsus is Order placed (otherwise cannot cancel) }}
+          <form action="/cancel-order" method="post" id="edit-form">
+          <input type="hidden" name="order_id" value="{{ this._id }}">
+          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+          <button type="submit" class="btn btn-warning">Cancel Order</button>
+          {{/if}}
         </div>
-        <div class="panel-footer">Total Price: <strong>£{{ this.cart.totalPrice }}</strong>     Status:  <strong>{{this.status}}</strong></div>
+        <div class="panel-footer">Total Price: <strong>£{{ this.cart.totalPrice }}</strong>     Status:  <strong>{{this.status}}</strong>
+
+        </div>
+      </form>
       </div>
     {{/each}}
   </div>
@@ -35,12 +45,11 @@
                 <li class="list-group-item"><strong>Postcode:</strong> {{ user.postcode}}</li>
                 <li class="list-group-item"><strong>Contact Number:</strong> {{ user.contactnumber }}</li>
                 <li class="list-group-item"><strong>Email:</strong> {{ user.email}}</li>
-                <br><br>
-                <form action="/user/profile" method="post" id="edit-form">
-                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-                <button type="submit" class="btn btn-success">Edit Details</button>
-              </form>
             </ul>
+            <form action="/user/profile" method="post" id="edit-form">
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            <button type="submit" class="btn btn-success">Edit Details</button>
+          </form>
           </div>
         </div>
     </div>
