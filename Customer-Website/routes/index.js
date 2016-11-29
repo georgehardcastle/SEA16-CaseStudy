@@ -106,7 +106,8 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
       cart: cart,
       address: req.body.address,
       name: req.body.name,
-      paymentId: charge.id
+      paymentId: charge.id,
+      status: "Order placed"
     });
 
     for ( var productID in cart.items ) {
