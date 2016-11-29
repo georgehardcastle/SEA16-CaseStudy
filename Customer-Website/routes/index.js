@@ -60,7 +60,8 @@ router.get('/shopping-cart', function(req, res, next) {
     return res.render('shop/shopping-cart', {products: null});
   }
   var cart = new Cart(req.session.cart);
-  res.render('shop/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice})
+
+  res.render('shop/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
 });
 
 router.get('/checkout', isLoggedIn, function(req, res, next) {
@@ -69,7 +70,16 @@ router.get('/checkout', isLoggedIn, function(req, res, next) {
   }
   var cart = new Cart(req.session.cart);
   var errMsg = req.flash('error')[0];
-  res.render('shop/checkout', {total: cart.totalPrice, errMsg: errMsg, noError: !errMsg})
+
+  if(req.isAuthenticated()) {
+    if (req.user.accounttype == "businesscustomer") {
+      console.log(req.user.accounttype);
+      res.render('shop/checkout-business', {total: cart.totalPrice, errMsg: errMsg, noError: !errMsg})
+    }
+    else {
+      res.render('shop/checkout', {total: cart.totalPrice, errMsg: errMsg, noError: !errMsg})
+    }
+  }
 });
 
 router.post('/checkout', isLoggedIn, function(req, res, next) {
@@ -79,7 +89,6 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
   var cart = new Cart(req.session.cart);
 
   var stripe = require("stripe")("sk_test_9ilKltRSNlbS3WEMUBb0Tmxy");
-
   var token = req.body.stripeToken;
 
   var charge = stripe.charges.create({
@@ -107,7 +116,7 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
       var newStockLevel = product.stockLevel - itemQty;
 
       Product.update({ _id: product._id }, { $set: { stockLevel: newStockLevel }}, function (err, raw) {
-        if (err) return handleError(err);
+        //if (err) return handleError(err);
       });
 
     }
@@ -118,6 +127,77 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
     });
   });
 })
+
+router.post('/checkout-business', isLoggedIn, function(req, res, next) {
+  if (!req.session.cart) {
+    return res.redirect('shop/shopping-cart');
+  }
+  var cart = new Cart(req.session.cart)
+
+  if (req.body.purchaseOrderNoBusiness == "") {
+    var stripe = require("stripe")("sk_test_9ilKltRSNlbS3WEMUBb0Tmxy");
+    var token = req.body.stripeToken;
+
+    var charge = stripe.charges.create({
+      amount: cart.totalPrice * 100, // Amount in pence
+      currency: "gbp",
+      source: token,
+      description: "Example charge"
+    }, function(err, charge) {
+      if (err) {
+        req.flash('error', err.message);
+        return res.redirect('/checkout');
+      }
+      var order = new Order({
+        user: req.user,
+        cart: cart,
+        address: req.body.addressBusiness,
+        name: req.body.nameBusiness,
+        paymentId: charge.id
+      });
+      for ( var productID in cart.items ) {
+        var itemQty = cart.items[productID].qty;
+        var product = cart.items[productID].item;
+
+        var newStockLevel = product.stockLevel - itemQty;
+
+        Product.update({ _id: product._id }, { $set: { stockLevel: newStockLevel }}, function (err, raw) {
+          //if (err) return handleError(err);
+        });
+      }
+      order.save(function(err, result) {
+        req.flash('success', 'Successfully bought product!');
+        req.session.cart = null;
+        res.redirect('/');
+      });
+    });
+  }
+  else {
+    var order = new Order({
+      user: req.user,
+      cart: cart,
+      address: req.body.addressBusiness,
+      name: req.body.nameBusiness,
+      purchaseOrderNo: req.body.purchaseOrderNoBusiness
+    });
+    for ( var productID in cart.items ) {
+      var itemQty = cart.items[productID].qty;
+      var product = cart.items[productID].item;
+
+      var newStockLevel = product.stockLevel - itemQty;
+
+      Product.update({ _id: product._id }, { $set: { stockLevel: newStockLevel }}, function (err, raw) {
+        //if (err) return handleError(err);
+      });
+    }
+    order.save(function(err, result) {
+      req.flash('success', 'Successfully bought product!');
+      req.session.cart = null;
+      res.redirect('/');
+    });
+  }
+})
+
 
 router.post('/search', function(req, res, next){
 

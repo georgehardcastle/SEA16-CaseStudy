@@ -54,6 +54,7 @@ passport.use('local.signup', new LocalStrategy({
     newUser.town = req.body.town;
     newUser.postcode = req.body.postcode;
     newUser.contactnumber = req.body.contactnumber;
+    newUser.accounttype = req.body.accounttype;
 
     newUser.save(function(err, result) {
       if (err) {
