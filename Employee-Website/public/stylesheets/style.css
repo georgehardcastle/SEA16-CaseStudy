@@ -184,6 +184,20 @@ nav {
 .dash-info-container ul:hover {
   background-color: rgb(235,235,235);
 }
+/* DASHBOARD ORDER */
+
+#customer-order h4 {
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding: 10px;
+}
+#customer-order table {
+  padding: 30px;
+  width: 100%;
+}
+#customer-order table th {
+  border-bottom: 1px solid rgb(235,235,235);
+}
 /* RESPONSIVE */
 .custom-row::after {
     content: "";
