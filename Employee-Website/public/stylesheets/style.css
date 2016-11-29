@@ -146,6 +146,10 @@ nav {
   height: 500px;
   padding: 20px;
 }
+.dash-inner-tile {
+  overflow-y: scroll;
+  height: 100%;
+}
 .g-search-box-container {
   position: relative;
   width: 100%;
@@ -173,6 +177,12 @@ nav {
   height: 400px;
   background-color: rgb(245,245,245);
 }
+.dash-info-container-no-search {
+  overflow-y: scroll;
+  height: 450px;
+  background-color: rgb(245,245,245);
+  padding: 10px;
+}
 .dash-info-container ul {
   padding:10px;
   margin:0;
@@ -197,6 +207,13 @@ nav {
 }
 #customer-order table th {
   border-bottom: 1px solid rgb(235,235,235);
+}
+.dash-tile-no-content {
+  position: relative;
+  color: rgb(220,220,220);
+  width: 100%;
+  text-align: center;
+  top: 175px;
 }
 /* RESPONSIVE */
 .custom-row::after {
