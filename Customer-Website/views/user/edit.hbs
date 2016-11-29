@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <h1>Edit Profile</h1>
+    <form action= "/user/edit" method="post">
+        <div class="form-group">
+            <label for="firstname">First Name</label>
+            <input type="text" id="firstname" name="firstname" class="form-control" value={{user.firstname}}>
+        </div>
+        <div class="form-group">
+            <label for="lastname">Surname</label>
+            <input type="text" id="lastname" name="lastname" class="form-control"  value={{user.lastname }}>
+        </div>
+        <div class="form-group">
+            <label for="firstlineofaddress">First line of address</label>
+            <input type="text" id="firstlineofaddress" name="firstlineofaddress" class="form-control"  value={{user.firstlineofaddress}}>
+        </div>
+        <div class="form-group">
+            <label for="town">Town</label>
+            <input type="text" id="town" name="town" class="form-control" value={{user.town}}>
+        </div>
+        <div class="form-group">
+            <label for="postcode">Postcode</label>
+            <input type="text" id="postcode" name="postcode" class="form-control"  value={{user.postcode}}>
+        </div>
+        <div class="form-group">
+            <label for="contactnumber">Contact number</label>
+            <input type="text" id="contactnumber" name="contactnumber" class="form-control"  value={{user.contactnumber}}>
+        </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="text" id="email" name="email" class="form-control"  value={{user.email}} disabled>
+      </div>
+      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+      <button type="submit" class="btn btn-primary">Edit Details</button>
+    </form>
+  </div>
+</div>

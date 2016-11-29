@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1>User Profile</h1>
+    <hr>
+    <h2>My Orders</h2>
+    {{# each orders}}
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <ul class="list-group">
+            {{# each this.items }}
+              <li class="list-group-item">
+                <span class="badge">{{ this.price }}</span>
+                {{ this.item.title }} | {{ this.qty }} Units
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+        <div class="panel-footer">Total Price: <strong>£{{ this.cart.totalPrice }}</strong></div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+      <div>
+        <h2>My Details</h2>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>First Name:</strong> {{ user.firstname }}</li>
+                <li class="list-group-item"><strong>Last Name:</strong> {{ user.lastname }}</li>
+                <li class="list-group-item"><strong>First Line of Address:</strong> {{ user.firstlineofaddress}}</li>
+                <li class="list-group-item"><strong>Town:</strong> {{ user.town }}</li>
+                <li class="list-group-item"><strong>Postcode:</strong> {{ user.postcode}}</li>
+                <li class="list-group-item"><strong>Contact Number:</strong> {{ user.contactnumber }}</li>
+                <li class="list-group-item"><strong>Email:</strong> {{ user.email}}</li>
+                <br><br>
+                <form action="/user/profile" method="post" id="edit-form">
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                <button type="submit" class="btn btn-success">Edit Details</button>
+              </form>
+            </ul>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
