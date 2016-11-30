@@ -130,7 +130,6 @@ router.post('/update-details-dash', function(req, res, next) {
 
   var query = {email: searchEmail};
   var update = {email: req.body.email,
-                password: "testpassword",
                 firstname: req.body.firstName,
                 lastname: req.body.lastName,
                 firstlineofaddress: req.body.firstlineofaddress,
@@ -143,6 +142,17 @@ router.post('/update-details-dash', function(req, res, next) {
       console.log('got an error');
     }
     else res.send('Successfully Updated')
+  });
+});
+
+router.post('/delete-customer', function(req, res, next) {
+  Customer.remove({ email: req.body.email }, function(err) {
+    if (!err) {
+      res.send('Customer Removed')
+    }
+    else {
+      console.log('Error!');
+    }
   });
 });
 

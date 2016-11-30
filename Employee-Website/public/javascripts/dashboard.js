@@ -207,6 +207,7 @@ $( document ).ready(function() {
     });
   }
 
+
   $(document).on('click', '#customer-details ul', function() {
 
     // GRAB CUSTOMER DETAILS FROM VIEW
@@ -228,7 +229,7 @@ $( document ).ready(function() {
 
   });
 
-  $(".update-details-btn" ).click(function() {
+  $("#update-details-btn" ).on( "click", function() {
     var email = $("#email-update").val();
     var firstName = $("#firstname-update").val();
     var lastName = $("#lastname-update").val();
@@ -243,5 +244,12 @@ $( document ).ready(function() {
       handleCustomerSearch();
     });
 
+  $( "#delete-btn" ).on( "click", function() {
+    var email = $("#email-update").val();
+    $.post( '/delete-customer', {email: email}, function( customer ) {
+      alert(customer);
+    });
+    handleCustomerSearch();
+  });
 
 });
