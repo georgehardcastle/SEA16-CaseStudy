@@ -65,6 +65,15 @@ $( document ).ready(function() {
     }
   });
 
+  function updateBasketTotal() {
+    parseInt($("#customer-order-cart-total").html().split("£")[1]);
+    var cartTotal = 0;
+    for (order in cart) {
+      cartTotal += cart[order].totalPrice;
+    }
+    $("#customer-order-cart-total").html("Total: £" + cartTotal);
+  }
+
   var cart = [];
 
   $(document).on('click', '#catalog-details ul', function() {
@@ -72,39 +81,47 @@ $( document ).ready(function() {
     var productId = $(this).children("li.product-id").text();
     var productTitle = $(this).children("li.product-title").text();
     var productDescription = $(this).children("li.product-description").text();
-    var productPrice = $(this).children("li.product-price").text();
+    var productPrice = parseInt($(this).children("li.product-price").text().split("£")[1]);
 
     var duplicateItem = false;
 
     if (cart.length == 0) {
-      cart.push({id: productId, qty: 1});
+      cart.push({id: productId, qty: 1, productPrice: productPrice, totalPrice: productPrice});
       $( "#customer-order-product-details" ).append('<ul class="catalog-details"> ' +
           '<li class="product-id hidden">' + productId + '</li>' +
           '<li><strong>' + productTitle + '</strong></li>' +
           '<li>' + productDescription + '</li>' +
-          '<li>' + productPrice + '</li>' +
+          '<li>' + productPrice + ' each</li>' +
+          '<li class="product-qty"> Qty: ' + 1 + '</li>' +
+          '<li class="product-total"> Total: ' + productPrice + '</li>' +
         '</ul>'
       )
     } else {
+      var counter = 0;
       for (item in cart) {
+        counter++;
         if (cart[item].id == productId) {
           cart[item].qty++;
+          cart[item].totalPrice += productPrice;
+          $( "#customer-order-product-details ul:nth-child(" + counter + ") li.product-qty" ).html(" Qty: " + cart[item].qty);
+          $( "#customer-order-product-details ul:nth-child(" + counter + ") li.product-total" ).html(" Total: " + cart[item].totalPrice);
           var duplicateItem = true;
         }
       }
       if (duplicateItem == false) {
-        cart.push({id: productId, qty: 1});
+        cart.push({id: productId, qty: 1, productPrice: productPrice, totalPrice: productPrice});
         $( "#customer-order-product-details" ).append('<ul class="catalog-details"> ' +
             '<li class="product-id hidden">' + productId + '</li>' +
             '<li><strong>' + productTitle + '</strong></li>' +
             '<li>' + productDescription + '</li>' +
-            '<li>' + productPrice + '</li>' +
+            '<li>' + productPrice + ' each</li>' +
+            '<li class="product-qty"> Qty: ' + 1 + '</li>' +
+            '<li class="product-total"> Total: ' + productPrice + '</li>' +
           '</ul>'
         )
       }
     }
-
-    console.log(cart);
+  updateBasketTotal()
   });
 
   function addDetailsToNewOrder(name, address,town,postcode,contactnumber,email) {
@@ -228,6 +245,16 @@ $( document ).ready(function() {
 
   });
 
+  $("#place-order-btn").click(function() {
+
+    cartString = JSON.stringify(cart);
+
+    $.post( '/place-order', { viewCart: cartString }, function( res ){
+      alert(res);
+    })
+
+  })
+
   $(".update-details-btn" ).click(function() {
     var email = $("#email-update").val();
     var firstName = $("#firstname-update").val();
@@ -243,5 +270,7 @@ $( document ).ready(function() {
       handleCustomerSearch();
     });
 
+  handleCustomerSearch()
+  handleCatalogSearch()
 
 });

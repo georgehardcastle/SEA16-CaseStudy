@@ -35,7 +35,6 @@ html, body {
 .w-h-100 {
   width: 100%;
   height: 100%;
-  border: 1px solid red;
 }
 .signin-container {
   width: 400px;
@@ -194,7 +193,7 @@ nav {
 }
 /* SEARCH BOX */
 .dash-tile {
-  height: 500px;
+  height: 540px;
   padding: 20px;
 }
 .dash-inner-tile {
@@ -225,12 +224,12 @@ nav {
 }
 .dash-info-container {
   overflow-y: scroll;
-  height: 400px;
+  height: 440px;
   background-color: rgb(245,245,245);
 }
 .dash-info-container-no-search {
   overflow-y: scroll;
-  height: 450px;
+  height: 490px;
   background-color: rgb(245,245,245);
   padding: 10px;
 }

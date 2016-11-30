@@ -104,19 +104,87 @@ router.post('/catalog-search', function(req, res, next){
  }
 });
 
-router.post('/add-to-cart', function(req, res, next) {
-  var productId = req.params.id;
-  var cart = new Cart(req.session.cart ? req.session.cart : {});
+router.post('/place-order', function(req, res, next) {
+  var viewCart = JSON.parse(req.body.viewCart);
 
-  Product.findById(productId, function(err, product) {
-    if (err) {
-      return res.redirect('/');
-    }
-    cart.add(product, product.id);
-    req.session.cart = cart;
-    res.redirect('/');
-  })
+  console.log(viewCart);
+
+  if (viewCart.length == 0) {
+    res.send("no items selected");
+  } else {
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+    var products = [];
+
+    for ( item in viewCart ) {
+
+      var productId = viewCart[item].id;
+      var productQty = viewCart[item].qty;
+
+     console.log("id: " + productId + " qty: " + productQty );
+
+     Product.findOne({ '_id': productId },function(err,product) {
+       products.push(product);
+       console.log(products);
+     });
+    //  console.log(counter);
+   }
+ }
 });
+    //    if (product) {
+    //      for(var i=0; i<productQty; i++) {
+    //        console.log("item: " + productId);
+     //  cart.add(product, product.id);
+    //      }
+    //    }
+     //
+     //
+     //
+   // res.send("added to cart");
+     //
+    //  })
+
+
+
+  // var stripe = require("stripe")("sk_test_9ilKltRSNlbS3WEMUBb0Tmxy");
+  // var token = req.body.stripeToken;
+  //
+  // var charge = stripe.charges.create({
+  //   amount: cart.totalPrice * 100, // Amount in pence
+  //   currency: "gbp",
+  //   source: token,
+  //   description: "Example charge"
+  // }, function(err, charge) {
+  //   if (err) {
+  //     req.flash('error', err.message);
+  //     return res.redirect('/checkout');
+  //   }
+  //   var order = new Order({
+  //     user: req.user,
+  //     cart: cart,
+  //     address: req.body.address,
+  //     name: req.body.name,
+  //     paymentId: charge.id,
+  //     status: "Order placed"
+  //   });
+  //
+  //   for ( var productID in cart.items ) {
+  //     var itemQty = cart.items[productID].qty;
+  //     var product = cart.items[productID].item;
+  //
+  //     var newStockLevel = product.stockLevel - itemQty;
+  //
+  //     Product.update({ _id: product._id }, { $set: { stockLevel: newStockLevel }}, function (err, raw) {
+  //       //if (err) return handleError(err);
+  //     });
+  //
+  //   }
+  //   order.save(function(err, result) {
+  //     req.flash('success', 'Successfully bought product!');
+  //     req.session.cart = null;
+  //     res.redirect('/');
+  //   });
+  // });
 
 router.post('/customer-update', function(req, res, next){
   Customer.findOne({ 'email': req.body.email }, function (err, customer) {
