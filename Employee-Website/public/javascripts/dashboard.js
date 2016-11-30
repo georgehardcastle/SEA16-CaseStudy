@@ -224,6 +224,7 @@ $( document ).ready(function() {
     });
   }
 
+
   $(document).on('click', '#customer-details ul', function() {
 
     // GRAB CUSTOMER DETAILS FROM VIEW
@@ -245,6 +246,7 @@ $( document ).ready(function() {
 
   });
 
+<<<<<<< HEAD
   $("#place-order-btn").click(function() {
 
     cartString = JSON.stringify(cart);
@@ -256,6 +258,9 @@ $( document ).ready(function() {
   })
 
   $(".update-details-btn" ).click(function() {
+=======
+  $("#update-details-btn" ).on( "click", function() {
+>>>>>>> 25fbb973720329075154fa8eb3a074d7178882ec
     var email = $("#email-update").val();
     var firstName = $("#firstname-update").val();
     var lastName = $("#lastname-update").val();
@@ -270,7 +275,32 @@ $( document ).ready(function() {
       handleCustomerSearch();
     });
 
+<<<<<<< HEAD
   handleCustomerSearch()
   handleCatalogSearch()
+=======
+  $( "#delete-btn" ).on( "click", function() {
+    var email = $("#email-update").val();
+    $.post( '/delete-customer', {email: email}, function( customer ) {
+      alert(customer);
+    });
+    handleCustomerSearch();
+  });
+
+  $( "#register-customer-btn" ).click(function() {
+    var email = $("#email-customer").val();
+    var firstName = $("#firstname-customer").val();
+    var lastName = $("#lastname-customer").val();
+    var firstlineofaddress = $("#firstlineofaddress-customer").val();
+    var town =  $("#town-customer").val();
+    var postcode = $("#postcode-customer").val();
+    var contactnumber = $("#contactnumber-customer").val();
+
+    $.post( '/register-customer', {email: email, firstName: firstName, lastName: lastName, firstlineofaddress: firstlineofaddress, town: town, postcode: postcode, contactnumber: contactnumber}, function( customer ) {
+        alert(customer);
+      });
+      handleCustomerSearch();
+  });
+>>>>>>> 25fbb973720329075154fa8eb3a074d7178882ec
 
 });
