@@ -43,9 +43,8 @@
       <input type="text" id="contactnumber-update" name="contactnumber-update" class="form-in" placeholder="Contact Number"  value={{this.contactnumber}}>
       <input type="hidden" id="email-update" name="email-update" class="form-in" placeholder="E-Mail"  value={{this.email}}>
       <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-      <button class="update-details-btn sky-blue-bg submit-btn" type="submit">Update Details</button>
+      <button id="update-details-btn" class= "sky-blue-bg submit-btn" type="submit">Update Details</button>
     </div>
-    <button id="update-details-btn" style="z-index: 100" type="submit" class="update-details-btn">Update Details</button>
     <button id="delete-btn" style="z-index: 100" type="submit" class="delete-btn">Delete Customer</button>
   </div>
 </div>
