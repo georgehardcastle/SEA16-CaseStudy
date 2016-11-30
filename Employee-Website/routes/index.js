@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var csrf = require('csurf');
+var passport = require('passport');
+
 
 var Order = require('../models/order');
 var Cart = require('../models/cart');
@@ -225,7 +227,7 @@ router.post('/delete-customer', function(req, res, next) {
 });
 
 router.post('/register-customer', function(req, res, next) {
-  var password = "0000";
+  var defaultPassword = "0000";
   var validEmail = req.body.email;
 
   function isValidEmailAddress(emailAddress) {
@@ -236,7 +238,8 @@ router.post('/register-customer', function(req, res, next) {
   if(isValidEmailAddress(validEmail)) {
     var newCustomer = new Customer({
       email: req.body.email,
-      password: password,
+//      password: encryptPassword(defaultPassword),
+      password: defaultPassword,
       firstname: req.body.firstName,
       lastname: req.body.lastName,
       firstlineofaddress: req.body.firstlineofaddress,

@@ -32,59 +32,42 @@
   </div>
 </div>
 
-<div id="update" class="custom-col-d-6 dash-tile">
-  <div class="box-shadow">
-    <div class="dash-info-container-no-search">
-      <input type="text" id="firstname-update" name="firstname-update" class="form-in" placeholder="First Name" value={{this.firstname}}>
-      <input type="text" id="lastname-update" name="lastname-update" class="form-in" placeholder="Last Name"  value={{this.lastname }}>
-      <input type="text" id="firstlineofaddress-update" name="firstlineofaddress-update" class="form-in" placeholder="Address"  value={{this.firstlineofaddress}}>
-      <input type="text" id="town-update" name="town-update" class="form-in" placeholder="Town" value={{this.town}}>
-      <input type="text" id="postcode-update" name="postcode-update" class="form-in" placeholder="Postcode"  value={{this.postcode}}>
-      <input type="text" id="contactnumber-update" name="contactnumber-update" class="form-in" placeholder="Contact Number"  value={{this.contactnumber}}>
-      <input type="hidden" id="email-update" name="email-update" class="form-in" placeholder="E-Mail"  value={{this.email}}>
-      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-      <button id="update-details-btn" class= "sky-blue-bg submit-btn" type="submit">Update Details</button>
-    </div>
-    <button id="delete-btn" style="z-index: 100" type="submit" class="delete-btn">Delete Customer</button>
-  </div>
-</div>
+<div id="update-delete-register" class="custom-col-d-6 dash-tile">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#update-delete-tab">Update / Delete Customer</a></li>
+    <li><a data-toggle="tab" href="#register-customer-tab">Customer Registration</a></li>
+  </ul>
+  <div class="spacer-100">
+    <div class="box-shadow">
+      <div class="dash-info-container-tabs">
+        <div class="tab-content">
+          <div id="update-delete-tab" class="tab-pane fade in active">
+            <input type="text" id="firstname-update" name="firstname-update" class="form-in-tab" placeholder="First Name" value={{this.firstname}}>
+            <input type="text" id="lastname-update" name="lastname-update" class="form-in-tab" placeholder="Last Name"  value={{this.lastname }}>
+            <input type="text" id="firstlineofaddress-update" name="firstlineofaddress-update" class="form-in-tab" placeholder="Address"  value={{this.firstlineofaddress}}>
+            <input type="text" id="town-update" name="town-update" class="form-in-tab" placeholder="Town" value={{this.town}}>
+            <input type="text" id="postcode-update" name="postcode-update" class="form-in-tab" placeholder="Postcode"  value={{this.postcode}}>
+            <input type="text" id="contactnumber-update" name="contactnumber-update" class="form-in-tab" placeholder="Contact Number"  value={{this.contactnumber}}>
+            <input type="hidden" id="email-update" name="email-update" class="form-in-tab" placeholder="E-Mail"  value={{this.email}}>
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            <button id="update-details-btn" class= "sky-blue-bg submit-btn-tab" type="submit">Update Details</button>
+            <button id="delete-btn" type="submit" class="red-bg submit-btn-tab" style="float: right;">Delete Customer</button>
+          </div>
 
-<div id="register-customer" class="custom-col-d-6 dash-tile" style="border: 1px solid blue;">
-<h3> Register New Customer </h3>
-  <div class="row">
-    <div class="col-md-12">
-          <div class="form-group">
-              <label for="firstname-customer">First Name</label>
-              <input type="text" id="firstname-customer" name="firstname-customer" class="form-control">
+          <div id="register-customer-tab" class="tab-pane fade">
+            <input type="text" id="firstname-customer" name="firstname-customer" placeholder="First Name" class="form-in">
+            <input type="text" id="lastname-customer" name="lastname-customer" placeholder="Last Name" class="form-in">
+            <input type="text" id="firstlineofaddress-customer" name="firstlineofaddress-customer" placeholder= "Address" class="form-in">
+            <input type="text" id="town-customer" name="town-customer" placeholder="Town" class="form-in">
+            <input type="text" id="postcode-customer" name="postcode-customer" placeholder="Postcode" class="form-in">
+            <input type="text" id="contactnumber-customer" name="contactnumber-customer" placeholder="Contact Number" class="form-in">
+            <input type="text" id="email-customer" name="email-customer" placeholder="E-Mail" class="form-in">
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            <button id="register-customer-btn" class="sky-blue-bg submit-btn-tab" type="submit" >Submit</button>
           </div>
-          <div class="form-group">
-              <label for="lastname-customer">Surname</label>
-              <input type="text" id="lastname-customer" name="lastname-customer" class="form-control">
-          </div>
-          <div class="form-group">
-              <label for="firstlineofaddress-customer">First line of address</label>
-              <input type="text" id="firstlineofaddress-customer" name="firstlineofaddress-customer" class="form-control">
-          </div>
-          <div class="form-group">
-              <label for="town-customer">Town</label>
-              <input type="text" id="town-customer" name="town-customer" class="form-control">
-          </div>
-          <div class="form-group">
-              <label for="postcode-customer">Postcode</label>
-              <input type="text" id="postcode-customer" name="postcode-customer" class="form-control">
-          </div>
-          <div class="form-group">
-              <label for="contactnumber-customer">Contact number</label>
-              <input type="text" id="contactnumber-customer" name="contactnumber-customer" class="form-control">
-          </div>
-          <div class="form-group">
-              <label for="email-customer">Email</label>
-              <input type="text" id="email-customer" name="email-customer" class="form-control">
-          </div>
-        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+        </div>
+      </div>
     </div>
-    <button id="register-customer-btn" type="submit" >Submit</button>
-    <div style="height: 100px"></div>
   </div>
 </div>
 
