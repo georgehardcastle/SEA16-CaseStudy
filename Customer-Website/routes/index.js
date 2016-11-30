@@ -229,20 +229,19 @@ router.post('/search', function(req, res, next){
 
 
 router.post('/cancel-order', isLoggedIn, function(req, res, next) {
-
-  Order.find({id: req.body._id}, function(err, order) {
+  Order.find({_id: req.body.order_id}, function(err, order) {
     if (err) {
       return res.write('Error!');
     }
 
-  /*  if (order) {
+    if (order) {
 
-    Order.update({ id: req.body._id}, { $set: { status: "Cancelled"}
+    Order.update({_id: req.body.order_id}, { $set: { status: "Cancelled"}
     }, function (err, raw) {
       if (err) return handleError(err);
     });
   }
-*/
+
 });
   res.redirect('/user/profile');
 
