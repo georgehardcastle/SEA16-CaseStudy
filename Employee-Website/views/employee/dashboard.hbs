@@ -31,3 +31,51 @@
     </div>
   </div>
 </div>
+
+<div id="update" class="custom-col-d-6 dash-tile" style="border: 1px solid blue;">
+<h3> Update Customer Details </h3>
+<h5> Customer Name </h5>
+  <div class="row">
+    <div class="col-md-12">
+          <div class="form-group">
+              <label for="firstname">First Name</label>
+              <input type="text" id="firstname-update" name="firstname-update" class="form-control" value={{this.firstname}}>
+          </div>
+          <div class="form-group">
+              <label for="lastname">Surname</label>
+              <input type="text" id="lastname-update" name="lastname-update" class="form-control"  value={{this.lastname }}>
+          </div>
+          <div class="form-group">
+              <label for="firstlineofaddress">First line of address</label>
+              <input type="text" id="firstlineofaddress-update" name="firstlineofaddress-update" class="form-control"  value={{this.firstlineofaddress}}>
+          </div>
+          <div class="form-group">
+              <label for="town">Town</label>
+              <input type="text" id="town-update" name="town-update" class="form-control" value={{this.town}}>
+          </div>
+          <div class="form-group">
+              <label for="postcode">Postcode</label>
+              <input type="text" id="postcode-update" name="postcode-update" class="form-control"  value={{this.postcode}}>
+          </div>
+          <div class="form-group">
+              <label for="contactnumber">Contact number</label>
+              <input type="text" id="contactnumber-update" name="contactnumber-update" class="form-control"  value={{this.contactnumber}}>
+          </div>
+          <div class="form-group">
+              <input type="hidden" id="email-update" name="email-update" class="form-control"  value={{this.email}}>
+          </div>
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+    </div>
+    <button class="update-details-btn" style="z-index: 100" type="submit">Update Details</button>
+  </div>
+</div>
+
+
+<!-- <div class="custom-col-d-12 dash-tile">
+  <div class="box-shadow">
+    <div id="customer-order-details" class="dash-info-container-no-search">
+      <div id="customer-order-customer-details" style="width:50%; border: 1px solid red"></div>
+      <div id="customer-order-product-details" style="width:50%; border: 1px solid blue"></div>
+    </div>
+  </div>
+</div> -->

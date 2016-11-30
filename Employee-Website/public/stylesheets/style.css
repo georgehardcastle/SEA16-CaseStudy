@@ -1,17 +1,65 @@
 /* GENERAL */
+@font-face {
+  font-family: 'Sky';
+  src: url('../fonts/Sky_Reg.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sky-Med';
+  src: url('../fonts/Sky_Med.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sky-Bold';
+  src: url('../fonts/Sky_Bold.ttf') format('truetype');
+}
 * {
   box-sizing: border-box;
   border: 0;
   margin: 0;
   padding: 0;
 }
+.hidden {
+  display: none;
+}
 html, body {
+  font-family: 'Sky';
   width: 100%;
   height: 100%;
+  border: 0;
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
 }
 .spacer-100 {
   height: 100px;
+}
+.w-h-100 {
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+}
+.signin-container {
+  width: 400px;
+  margin: auto;
+  margin-top: 100px;
+  background: rgb(250,250,250);
+}
+.signin-form {
+  width: 100%;
+  margin: auto;
+  padding: 40px;
+}
+.form-in {
+  border-radius: 0;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+.form-in:focus {
+  outline: 1px solid rgb(0,115,197);
+}
+.submit-btn {
+  padding: 10px;
+  color: white;
 }
 nav {
   background-color: white;
@@ -128,11 +176,14 @@ nav {
 }
 .fixed-bg {
   position: fixed;
+  overflow-x: hidden;
   top:0;
   left:0;
   height: 100%;
   width: 100%;
   z-index: -100;
+  margin: 0;
+  padding: 0;
 }
 /* ALERTS */
 .alert-img-overlay {

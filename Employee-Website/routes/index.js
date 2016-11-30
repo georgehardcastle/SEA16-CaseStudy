@@ -104,6 +104,48 @@ router.post('/catalog-search', function(req, res, next){
  }
 });
 
+router.post('/add-to-cart', function(req, res, next) {
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  Product.findById(productId, function(err, product) {
+    if (err) {
+      return res.redirect('/');
+    }
+    cart.add(product, product.id);
+    req.session.cart = cart;
+    res.redirect('/');
+  })
+});
+
+router.post('/customer-update', function(req, res, next){
+  Customer.findOne({ 'email': req.body.email }, function (err, customer) {
+    if (err) return console.log('error finding customer');
+    res.send({customer: customer});
+    });
+});
+
+router.post('/update-details-dash', function(req, res, next) {
+  var searchEmail = req.body.email;
+
+  var query = {email: searchEmail};
+  var update = {email: req.body.email,
+                password: "testpassword",
+                firstname: req.body.firstName,
+                lastname: req.body.lastName,
+                firstlineofaddress: req.body.firstlineofaddress,
+                town: req.body.town,
+                postcode: req.body.postcode,
+                contactnumber: req.body.contactnumber};
+  var options = {new: true};
+  Customer.findOneAndUpdate(query, update, options, function(err, person) {
+    if (err) {
+      console.log('got an error');
+    }
+    else res.send('Successfully Updated')
+  });
+});
+
 module.exports = router;
 
 function isLoggedIn(req, res, next) {
