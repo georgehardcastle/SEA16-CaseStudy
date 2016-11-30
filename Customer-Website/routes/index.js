@@ -129,6 +129,7 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
   });
 })
 
+
 router.post('/checkout-business', isLoggedIn, function(req, res, next) {
   if (!req.session.cart) {
     return res.redirect('shop/shopping-cart');
@@ -225,6 +226,29 @@ router.post('/search', function(req, res, next){
    });
  }
 });
+
+
+router.post('/cancel-order', isLoggedIn, function(req, res, next) {
+  Order.find({_id: req.body.order_id}, function(err, order) {
+    if (err) {
+      return res.write('Error!');
+    }
+
+    if (order) {
+
+    Order.update({_id: req.body.order_id}, { $set: { status: "Cancelled"}
+    }, function (err, raw) {
+      if (err) return handleError(err);
+    });
+  }
+
+});
+  res.redirect('/user/profile');
+
+});
+
+
+
 
 module.exports = router;
 
