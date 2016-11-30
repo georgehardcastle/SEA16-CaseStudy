@@ -246,7 +246,6 @@ $( document ).ready(function() {
 
   });
 
-<<<<<<< HEAD
   $("#place-order-btn").click(function() {
 
     cartString = JSON.stringify(cart);
@@ -257,10 +256,7 @@ $( document ).ready(function() {
 
   })
 
-  $(".update-details-btn" ).click(function() {
-=======
   $("#update-details-btn" ).on( "click", function() {
->>>>>>> 25fbb973720329075154fa8eb3a074d7178882ec
     var email = $("#email-update").val();
     var firstName = $("#firstname-update").val();
     var lastName = $("#lastname-update").val();
@@ -275,10 +271,10 @@ $( document ).ready(function() {
       handleCustomerSearch();
     });
 
-<<<<<<< HEAD
+
   handleCustomerSearch()
   handleCatalogSearch()
-=======
+
   $( "#delete-btn" ).on( "click", function() {
     var email = $("#email-update").val();
     $.post( '/delete-customer', {email: email}, function( customer ) {
@@ -301,6 +297,5 @@ $( document ).ready(function() {
       });
       handleCustomerSearch();
   });
->>>>>>> 25fbb973720329075154fa8eb3a074d7178882ec
 
 });
