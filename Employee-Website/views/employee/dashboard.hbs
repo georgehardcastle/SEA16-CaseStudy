@@ -71,6 +71,46 @@
   </div>
 </div>
 
+
+<div id="register-customer" class="custom-col-d-6 dash-tile" style="border: 1px solid blue;">
+<h3> Register New Customer </h3>
+  <div class="row">
+    <div class="col-md-12">
+          <div class="form-group">
+              <label for="firstname-customer">First Name</label>
+              <input type="text" id="firstname-customer" name="firstname-customer" class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="lastname-customer">Surname</label>
+              <input type="text" id="lastname-customer" name="lastname-customer" class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="firstlineofaddress-customer">First line of address</label>
+              <input type="text" id="firstlineofaddress-customer" name="firstlineofaddress-customer" class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="town-customer">Town</label>
+              <input type="text" id="town-customer" name="town-customer" class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="postcode-customer">Postcode</label>
+              <input type="text" id="postcode-customer" name="postcode-customer" class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="contactnumber-customer">Contact number</label>
+              <input type="text" id="contactnumber-customer" name="contactnumber-customer" class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="email-customer">Email</label>
+              <input type="text" id="email-customer" name="email-customer" class="form-control">
+          </div>
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+    </div>
+    <button id="register-customer-btn" type="submit" >Submit</button>
+    <div style="height: 100px"></div>
+  </div>
+</div>
+
 <!-- <div class="custom-col-d-12 dash-tile">
   <div class="box-shadow">
     <div id="customer-order-details" class="dash-info-container-no-search">

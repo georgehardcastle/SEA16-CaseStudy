@@ -156,6 +156,41 @@ router.post('/delete-customer', function(req, res, next) {
   });
 });
 
+router.post('/register-customer', function(req, res, next) {
+  var password = "0000";
+  var validEmail = req.body.email;
+
+  function isValidEmailAddress(emailAddress) {
+    var pattern = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return pattern.test(emailAddress);
+  };
+
+  if(isValidEmailAddress(validEmail)) {
+    var newCustomer = new Customer({
+      email: req.body.email,
+      password: password,
+      firstname: req.body.firstName,
+      lastname: req.body.lastName,
+      firstlineofaddress: req.body.firstlineofaddress,
+      town: req.body.town,
+      postcode: req.body.postcode,
+      contactnumber: req.body.contactnumber
+    });
+    newCustomer.save(function(err, result) {
+      if (err) {
+        res.send('Error');
+      }
+      else {
+        res.send('Account Successfully Created');
+      }
+    });
+  }
+  else {
+    res.send('Error - please enter a valid email address');
+  }
+});
+
+
 module.exports = router;
 
 function isLoggedIn(req, res, next) {

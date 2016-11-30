@@ -252,4 +252,19 @@ $( document ).ready(function() {
     handleCustomerSearch();
   });
 
+  $( "#register-customer-btn" ).click(function() {
+    var email = $("#email-customer").val();
+    var firstName = $("#firstname-customer").val();
+    var lastName = $("#lastname-customer").val();
+    var firstlineofaddress = $("#firstlineofaddress-customer").val();
+    var town =  $("#town-customer").val();
+    var postcode = $("#postcode-customer").val();
+    var contactnumber = $("#contactnumber-customer").val();
+
+    $.post( '/register-customer', {email: email, firstName: firstName, lastName: lastName, firstlineofaddress: firstlineofaddress, town: town, postcode: postcode, contactnumber: contactnumber}, function( customer ) {
+        alert(customer);
+      });
+      handleCustomerSearch();
+  });
+
 });
