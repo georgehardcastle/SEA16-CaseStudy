@@ -4,17 +4,46 @@
         <input name="search" type="text" placeholder="Search Experiences"><button type="submit" class="sky-blue-bg"><i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
     </form>
   </div>
+
+  <!-- // <script>
+  //    $("document").ready(function(){
+  //      $( ".thumbnail-container" ).on("click", function(){
+  //        var selectedTitle = $(this).find(".product-thumbnail-title").html();
+  //        console.log(selectedTitle);
+  //        $("#" + selectedTitle).toggleClass("hidden");
+  //     })
+  //   });
+  // </script> -->     
+
   <div class="custom-col-t-12">
     <div class="alert-img-overlay" {{#if noMessage}}hidden{{/if}}>
       {{ successMsg }}
     </div>
   </div>
-</div>
+
 
 <div class="custom-row thumbnail-grp-container radial-bg">
+  {{# each products }}
+      {{# each this }}
+        <div class="custom-col-t-6 custom-col-d-4 thumbnail-container">
+          <div class="product-thumbnail">
+              <div class="product-thumbnail-title">{{this.title}}</div>
+              <img class="product-thumbnail-img" src="{{ this.imagePath }}" alt="...">
+              <div class="product-thumbnail-info">
+              </div>
+          </div>
+        </div>
+      {{/each}}
+  {{/each}}
+</div>
+
+<!-- "custom-col-t-12"  -->
+
 {{# each products }}
-    {{# each this }}
-      <div class="custom-col-t-6 custom-col-d-4 thumbnail-container">
+  {{# each this }}
+    <div id="product-tiles">
+    <div class="product-description-container hidden" id="{{ this.title }}">
+      <div class="custom-col-t-12 thumbnail-container">
         <div class="product-thumbnail">
             <img class="product-thumbnail-img" src="{{ this.imagePath }}" alt="...">
             <div class="product-thumbnail-info">
@@ -28,8 +57,10 @@
             </div>
           </div>
       </div>
-    {{/each}}
+    </div>
+    </div>
+  {{/each}}
 {{/each}}
-</div>
+
 
 <!-- <script src="javascripts/search.js"></script> -->
