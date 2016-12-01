@@ -238,7 +238,6 @@ router.post('/register-customer', function(req, res, next) {
   if(isValidEmailAddress(validEmail)) {
     var newCustomer = new Customer({
       email: req.body.email,
-//      password: encryptPassword(defaultPassword),
       password: defaultPassword,
       firstname: req.body.firstName,
       lastname: req.body.lastName,
@@ -247,6 +246,9 @@ router.post('/register-customer', function(req, res, next) {
       postcode: req.body.postcode,
       contactnumber: req.body.contactnumber
     });
+
+    newCustomer.password = newCustomer.encryptPassword(defaultPassword);
+
     newCustomer.save(function(err, result) {
       if (err) {
         res.send('Error');
