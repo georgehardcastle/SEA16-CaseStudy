@@ -12,7 +12,8 @@ var userSchema = new Schema({
   town: {type: String, required: false},
   postcode: {type: String, required: false},
   contactnumber: {type: String, required: false},
-  accounttype: {type: String, required: false}  //use businesscustomer for business customers
+  accounttype: {type: String, required: false},  //use businesscustomer for business customers
+  companyname: {type: String, required: false}
 
 });
 

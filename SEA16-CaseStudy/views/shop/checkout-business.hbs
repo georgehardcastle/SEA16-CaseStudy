@@ -26,16 +26,40 @@
 
         <form action="/checkout-business" method="post" id="checkout-form-business">
             <div class="row">
+              <div class="col-xs-12">
+                  <div class="form-group">
+                      <label for="companyNameBusiness">Name</label>
+                      <input type="text" id="companyNameBusiness" class="form-control" name="companyNameBusiness" value={{req.user.companyName}}><!-- put requireds back in? -->
+                  </div>
+              </div>
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="nameBusiness">Name</label>
-                        <input type="text" id="nameBusiness" class="form-control" name="nameBusiness"><!-- put requireds back in? -->
+                        <label for="firstNameBusiness">First Name</label>
+                        <input type="text" id="firstNameBusiness" class="form-control" name="firstNameBusiness" value={{req.user.firstname}}><!-- put requireds back in? -->
                     </div>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="addressBusiness">Address</label>
-                        <input type="text" id="addressBusiness" class="form-control" name="addressBusiness">
+                        <label for="lastNameBusiness">Last Name</label>
+                        <input type="text" id="lastNameBusiness" class="form-control" name="lastNameBusiness" value={{req.user.lastname}}><!-- put requireds back in? -->
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="firstlineofaddressBusiness">Address</label>
+                        <input type="text" id="firstlineofaddressBusiness" class="form-control" name="firstlineofaddressBusiness" value={{req.user.firstlineofaddress}}>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="townBusiness">Town</label>
+                        <input type="text" id="townBusiness" class="form-control" name="townBusiness" value={{req.user.town}}>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="postcodeBusiness">Postcode</label>
+                        <input type="text" id="postcodeBusiness" class="form-control" name="postcodeBusiness" value={{req.user.postcode}}>
                     </div>
                 </div>
                 <hr>
