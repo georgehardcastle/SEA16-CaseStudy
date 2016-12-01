@@ -75,6 +75,7 @@ router.get('/checkout', isLoggedIn, function(req, res, next) {
   var cart = new Cart(req.session.cart);
   var errMsg = req.flash('error')[0];
 
+
   if(req.isAuthenticated()) {
     if (req.user.accounttype == "businesscustomer") {
       console.log(req.user.accounttype);

@@ -13,7 +13,6 @@
                 {{ this.item.title }} | {{ this.qty }} Units
               </li>
             {{/each}}
-
           </ul>
           {{#if true}}  {{!replace with check to see if status is Order placed (otherwise cannot cancel) }}
           <form action="/cancel-order" method="post" id="edit-form">
