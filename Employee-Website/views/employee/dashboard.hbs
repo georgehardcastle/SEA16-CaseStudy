@@ -1,19 +1,19 @@
 {{> header}}
 
 <div class="spacer-100"></div>
-<div class="radial-bg fixed-bg"></div>
-<div class="custom-col-d-6 dash-tile">
+<div class="radial-bg-whiter fixed-bg"></div>
+<div class="custom-col-d-4 dash-tile">
+  <div class="box-shadow">
   <div class="g-search-box-container">
       <input id="customer-search-input" class="g-search-box-input" name="search" type="text" placeholder="Search Customers"><button id="customer-search-submit" type="submit" class="sky-blue-bg g-search-box-submit"><i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
   </div>
-  <div class="box-shadow">
     <div class="dash-info-container">
       <div id="customer-details"></div>
     </div>
   </div>
 </div>
 
-<div class="custom-col-d-6 dash-tile">
+<div class="custom-col-d-4 dash-tile">
   <div class="box-shadow">
     <div id="customer-order" class="dash-info-container-no-search">
       <h2 class="dash-tile-no-content">No Orders</h2>
@@ -21,47 +21,18 @@
   </div>
 </div>
 
-<div class="custom-col-d-6 dash-tile">
+<div class="custom-col-d-4 dash-tile">
+    <div class="box-shadow">
   <div class="g-search-box-container">
       <input id="catalog-search-input" class="g-search-box-input" name="search" type="text" placeholder="Search Catalog"><button id="catalog-search-submit" type="submit" class="sky-blue-bg g-search-box-submit"><i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
   </div>
-  <div class="box-shadow">
+
     <div class="dash-info-container">
       <div id="catalog-details"></div>
     </div>
   </div>
 </div>
 
-<<<<<<< HEAD
-<div id="update" class="custom-col-d-6 dash-tile">
-  <div class="box-shadow">
-    <div class="dash-info-container-no-search">
-      <input type="text" id="firstname-update" name="firstname-update" class="form-in" placeholder="First Name" value={{this.firstname}}>
-      <input type="text" id="lastname-update" name="lastname-update" class="form-in" placeholder="Last Name"  value={{this.lastname }}>
-      <input type="text" id="firstlineofaddress-update" name="firstlineofaddress-update" class="form-in" placeholder="Address"  value={{this.firstlineofaddress}}>
-      <input type="text" id="town-update" name="town-update" class="form-in" placeholder="Town" value={{this.town}}>
-      <input type="text" id="postcode-update" name="postcode-update" class="form-in" placeholder="Postcode"  value={{this.postcode}}>
-      <input type="text" id="contactnumber-update" name="contactnumber-update" class="form-in" placeholder="Contact Number"  value={{this.contactnumber}}>
-      <input type="hidden" id="email-update" name="email-update" class="form-in" placeholder="E-Mail"  value={{this.email}}>
-      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-      <button id="update-details-btn" class= "sky-blue-bg submit-btn" type="submit">Update Details</button>
-    </div>
-    <button id="delete-btn" style="z-index: 100" type="submit" class="delete-btn">Delete Customer</button>
-  </div>
-</div>
-
-<!-- <div id="register-customer" class="custom-col-d-6 dash-tile" style="border: 1px solid blue;">
-<h3> Register New Customer </h3>
-  <div class="row">
-    <div class="col-md-12">
-          <div class="form-group">
-              <label for="firstname-customer">First Name</label>
-              <input type="text" id="firstname-customer" name="firstname-customer" class="form-control">
-          </div>
-          <div class="form-group">
-              <label for="lastname-customer">Surname</label>
-              <input type="text" id="lastname-customer" name="lastname-customer" class="form-control">
-=======
 <div id="update-delete-register" class="custom-col-d-6 dash-tile">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#update-delete-tab">Update / Delete Customer</a></li>
@@ -72,17 +43,16 @@
       <div class="dash-info-container-tabs">
         <div class="tab-content">
           <div id="update-delete-tab" class="tab-pane fade in active">
-            <input type="text" id="firstname-update" name="firstname-update" class="form-in-tab" placeholder="First Name" value={{this.firstname}}>
-            <input type="text" id="lastname-update" name="lastname-update" class="form-in-tab" placeholder="Last Name"  value={{this.lastname }}>
-            <input type="text" id="firstlineofaddress-update" name="firstlineofaddress-update" class="form-in-tab" placeholder="Address"  value={{this.firstlineofaddress}}>
-            <input type="text" id="town-update" name="town-update" class="form-in-tab" placeholder="Town" value={{this.town}}>
-            <input type="text" id="postcode-update" name="postcode-update" class="form-in-tab" placeholder="Postcode"  value={{this.postcode}}>
-            <input type="text" id="contactnumber-update" name="contactnumber-update" class="form-in-tab" placeholder="Contact Number"  value={{this.contactnumber}}>
-            <input type="hidden" id="email-update" name="email-update" class="form-in-tab" placeholder="E-Mail"  value={{this.email}}>
+            <input type="text" id="firstname-update" name="firstname-update" class="form-in" placeholder="First Name" value={{this.firstname}}>
+            <input type="text" id="lastname-update" name="lastname-update" class="form-in" placeholder="Last Name"  value={{this.lastname }}>
+            <input type="text" id="firstlineofaddress-update" name="firstlineofaddress-update" class="form-in" placeholder="Address"  value={{this.firstlineofaddress}}>
+            <input type="text" id="town-update" name="town-update" class="form-in" placeholder="Town" value={{this.town}}>
+            <input type="text" id="postcode-update" name="postcode-update" class="form-in" placeholder="Postcode"  value={{this.postcode}}>
+            <input type="text" id="contactnumber-update" name="contactnumber-update" class="form-in" placeholder="Contact Number"  value={{this.contactnumber}}>
+            <input type="hidden" id="email-update" name="email-update" class="form-in" placeholder="E-Mail"  value={{this.email}}>
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
             <button id="update-details-btn" class= "sky-blue-bg submit-btn-tab" type="submit">Update Details</button>
             <button id="delete-btn" type="submit" class="red-bg submit-btn-tab" style="float: right;">Delete Customer</button>
->>>>>>> d917a3aa200d5ee987a8d914bfa7a680ccd9c793
           </div>
 
           <div id="register-customer-tab" class="tab-pane fade">
@@ -100,12 +70,12 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
 <div class="custom-col-d-6 dash-tile">
   <div class="box-shadow">
     <div id="customer-order-details" class="dash-info-container-no-search">
-      <div id="customer-order-customer-details" style=" border-bottom: 1px solid rgb(230,230,230)"></div>
+      <div id="customer-order-customer-details" style=" background-color: white; padding: 10px;"></div>
       <div id="customer-order-product-details"></div>
       <div id="customer-order-checkout-details">
         <h4 id="customer-order-cart-total"> Total: £0 </h4>

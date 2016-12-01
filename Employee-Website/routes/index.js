@@ -133,7 +133,8 @@ router.post('/place-order', function(req, res, next) {
 function creditCharge(req, cart, customer) {
 
   Customer.findOne({ 'email': customer[0].email },function(err,user) {
-    console.log(user);
+    console.log("USER" + user);
+    console.log("CART" + cart)
     var order = new Order({
       user: user,
       cart: cart,
@@ -152,7 +153,7 @@ function creditCharge(req, cart, customer) {
       });
 
       order.save(function(err, result) {
-        // if(err) console.log(err.message);
+        if(err) console.log(err.message);
         req.flash('success', 'Successfully bought product!');
         req.session.cart = null;
       });
