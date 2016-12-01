@@ -95,6 +95,8 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
   var stripe = require("stripe")("sk_test_9ilKltRSNlbS3WEMUBb0Tmxy");
   var token = req.body.stripeToken;
 
+  console.log(req.user);
+
   var charge = stripe.charges.create({
     amount: cart.totalPrice * 100, // Amount in pence
     currency: "gbp",

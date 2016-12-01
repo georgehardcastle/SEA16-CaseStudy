@@ -6,7 +6,9 @@ var schema = new Schema({
   cart: {type: Object, required: true},
   address: {type: String, required: true},
   name: {type: String, required: true},
-  paymentId: {type: String, required: true}
+  paymentId: {type: String, required: false}, //change back to true?
+  purchaseOrderNo: {type: String, required: false}, //change to true?
+  status: {type: String, required: false}
 });
 
 module.exports = mongoose.model('Order', schema);
