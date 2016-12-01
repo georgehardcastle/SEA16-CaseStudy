@@ -76,6 +76,8 @@ $( document ).ready(function() {
 
   var cart = [];
 
+  var customer = [];
+
   $(document).on('click', '#catalog-details ul', function() {
 
     var productId = $(this).children("li.product-id").text();
@@ -235,6 +237,8 @@ $( document ).ready(function() {
     var contactnumber = $(this).children("li.customer-contactnumber").text();
     var email = $(this).children("li.customer-email").text();
 
+    customer.push({name: name, address: address, town: town, postcode: postcode, contactnumber: contactnumber, email: email});
+
     // ADD DETAILS TO NEW CUSTOMER ORDER DASH
     addDetailsToNewOrder(name, address,town,postcode,contactnumber,email);
 
@@ -249,8 +253,9 @@ $( document ).ready(function() {
   $("#place-order-btn").click(function() {
 
     cartString = JSON.stringify(cart);
+    customerString = JSON.stringify(customer);
 
-    $.post( '/place-order', { viewCart: cartString }, function( res ){
+    $.post( '/place-order', { viewCart: cartString, viewCustomer: customerString }, function( res ){
       alert(res);
     })
 
