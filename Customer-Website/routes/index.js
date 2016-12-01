@@ -74,14 +74,15 @@ router.get('/checkout', isLoggedIn, function(req, res, next) {
   }
   var cart = new Cart(req.session.cart);
   var errMsg = req.flash('error')[0];
+  var fullName= req.user.firstname + '  ' + req.user.lastname;
 
   if(req.isAuthenticated()) {
     if (req.user.accounttype == "businesscustomer") {
       console.log(req.user.accounttype);
-      res.render('shop/checkout-business', {total: cart.totalPrice, errMsg: errMsg, noError: !errMsg})
+      res.render('shop/checkout-business', {total: cart.totalPrice, errMsg: errMsg, noError: !errMsg, user:req.user, })
     }
     else {
-      res.render('shop/checkout', {total: cart.totalPrice, errMsg: errMsg, noError: !errMsg})
+      res.render('shop/checkout', {total: cart.totalPrice, errMsg: errMsg, noError: !errMsg, user:req.user, fullName: fullName})
     }
   }
 });
