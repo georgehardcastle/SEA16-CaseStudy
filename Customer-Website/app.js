@@ -12,6 +12,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
+var client = require('twilio')('ACCOUNT_SID', 'AUTH_TOKEN');
 
 
 var routes = require('./routes/index');

@@ -3,6 +3,7 @@ var router = express.Router();
 var csrf = require('csurf');
 var passport = require('passport');
 
+
 var Order = require('../models/order');
 var Cart = require('../models/cart');
 var User = require('../models/user');
@@ -103,6 +104,8 @@ router.post('/signin', passport.authenticate('local.signin', {
     res.redirect('/user/profile');
   }
 });
+
+
 
 module.exports = router;
 

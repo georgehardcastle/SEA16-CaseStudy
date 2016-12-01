@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var csrf = require('csurf');
+var accountSid = 'ACf6aaa9b72b1e9aff6fc5af65cd02cb33';
+var authToken = '97745ae9477e3defa5a6374020c882ba';
+var fromSmsNumber = '+441380800038';
+var client = require('twilio')(accountSid, authToken);
 
 var Cart = require('../models/cart');
 var Product = require('../models/product');
@@ -126,6 +130,17 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
       req.session.cart = null;
       res.redirect('/');
     });
+
+    var toSmsNumber = "+44" + req.user.contactnumber.substring(1,req.user.contactnumber.length);
+
+    client.messages.create({
+        //  to: toSmsNumber, //actual customer phone number for production
+          to: "07899992502", //test number for testing purposes
+          from: fromSmsNumber,
+          body: "Thankyou for your order with Sky Experiences.",
+      }, function(err, message) {
+          //console.log(message.sid);
+      });
   });
 })
 
@@ -246,8 +261,6 @@ router.post('/cancel-order', isLoggedIn, function(req, res, next) {
   res.redirect('/user/profile');
 
 });
-
-
 
 
 module.exports = router;
