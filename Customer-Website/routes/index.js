@@ -200,8 +200,8 @@ router.post('/checkout-business', isLoggedIn, function(req, res, next) {
     var order = new Order({
       user: req.user,
       cart: cart,
-      address: req.body.addressBusiness,
-      name: req.body.nameBusiness,
+      address: req.body.firstlineofaddressBusiness,
+      name: req.body.firstNameBusiness,
       purchaseOrderNo: req.body.purchaseOrderNoBusiness
     });
     for ( var productID in cart.items ) {

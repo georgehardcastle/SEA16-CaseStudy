@@ -18,7 +18,7 @@
           <form action="/cancel-order" method="post" id="edit-form">
           <input type="hidden" name="order_id" value="{{ this._id }}">
           <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-          <button type="submit" class="btn btn-warning">Cancel Order</button>
+          <button type="submit" class="red-bg submit-btn">Cancel Order</button>
           {{/if}}
         </div>
         <div class="panel-footer">Total Price: <strong>£{{ this.cart.totalPrice }}</strong>     Status:  <strong>{{this.status}}</strong>
@@ -47,7 +47,7 @@
             </ul>
             <form action="/user/profile" method="post" id="edit-form">
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            <button type="submit" class="btn btn-success">Edit Details</button>
+            <button type="submit" class="sky-blue-bg submit-btn">Edit Details</button>
           </form>
           </div>
         </div>
