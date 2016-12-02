@@ -31,6 +31,7 @@ html, body {
 }
 .spacer-100 {
   height: 100px;
+  width: 100%;
 }
 .w-h-100 {
   width: 100%;
@@ -182,6 +183,28 @@ nav {
   width: 45px;
   color: white;
 }
+.dash-tile-bottom-btn {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  top: -45px;
+  text-align: center;
+  color: white;
+  padding: 10px;
+}
+.tile-tab {
+  display: inline-block;
+  color: rgb(0,115,197);
+  padding: 10px;
+  font-size: 1.5rem;
+  background-color: rgb(240,240,240);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+#customer-order-cart-total {
+  font-weight: bold;
+  font-size: 3rem;
+}
 /* HERO BG */
 #index-hero {
   height: 500px;
@@ -217,6 +240,7 @@ nav {
 }
 /* SEARCH BOX */
 .dash-tile {
+  position: relative;
   height: 600px;
   padding: 20px;
 }
@@ -224,8 +248,18 @@ nav {
   overflow-y: scroll;
   height: 100%;
 }
+.dash-bottom-btn {
+  /*position: absolute;
+  bottom: 0;*/
+  color: white;
+  cursor: pointer;
+  padding: 12px;
+  text-align: center;
+  height: 45px;
+  /*width: 100%;*/
+}
 .tab-padding {
-  padding: 40px
+  padding: 40px;
 }
 .g-search-box-container {
   position: relative;
@@ -252,6 +286,13 @@ nav {
 .dash-info-container {
   overflow-y: scroll;
   height: 500px;
+  font-size: 1.5rem;
+  background-color: rgb(245,245,245);
+}
+.dash-info-container-btm-btn {
+  overflow-y: scroll;
+  height: 455px;
+  font-size: 1.5rem;
   background-color: rgb(245,245,245);
 }
 .dash-info-container-no-search {
@@ -266,15 +307,22 @@ nav {
   background-color: rgb(245,245,245);
   padding: 10px;
 }
-.dash-info-container ul {
+.dash-info-container-btm-btn ul, .dash-info-container ul {
   padding:10px;
   margin:0;
   border-bottom: 1px solid rgb(235,235,235);
 }
+#payment-form {
+  background-color: rgb(220,220,220);
+  padding: 10px;
+}
+.grey-bg {
+  background-color: rgb(220,220,220);
+}
 .customer-click {
   cursor: pointer;
 }
-.dash-info-container ul:hover {
+.dash-info-container-btm-btn ul:hover, .dash-info-container ul:hover {
   background-color: rgb(235,235,235);
 }
 /* DASHBOARD ORDER */
@@ -297,6 +345,13 @@ nav {
   width: 100%;
   text-align: center;
   top: 175px;
+}
+.display-none {
+  display: none;
+  transition: all 0.3s;
+}
+#customer-profile {
+  transform: translateY(100px);
 }
 /* RESPONSIVE */
 .custom-row::after {
