@@ -13,7 +13,7 @@
   //        $("#" + selectedTitle).toggleClass("hidden");
   //     })
   //   });
-  // </script> -->     
+  // </script> -->
 
   <div class="custom-col-t-12">
     <div class="alert-img-overlay" {{#if noMessage}}hidden{{/if}}>
@@ -42,7 +42,7 @@
 {{# each products }}
   {{# each this }}
     <div id="product-tiles">
-    <div class="product-description-container hidden" id="{{ this.title }}">
+    <div class="product-description-container" id="{{ this.title }}">
       <div class="custom-col-t-12 thumbnail-container">
         <div class="product-thumbnail">
             <img class="product-thumbnail-img" src="{{ this.imagePath }}" alt="...">

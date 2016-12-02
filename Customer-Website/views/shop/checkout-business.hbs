@@ -1,127 +1,75 @@
-<div class="row">
-    <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
-        <h1>Checkout</h1>
-        <h4>Your Total: £{{ total }}</h4>
+<style>#po-payment-business{display:none;}</style>
+<script>
+   $("document").ready(function(){
+     $("#business-customer").on("click",function(){
+       $("#po-payment-business").toggle();
+       $('#po-payment-business').prop('required',true);
+       $('#card-name-business-div').toggle();
+       $('#cardNumberBusiness-div').toggle();
+       $('#card-month-business-div').toggle();
+       $('#card-year-business-div').toggle();
+       $('#card-cvc-business-div').toggle();
+     })
+   });
+</script>
 
-        <div id="charge-error" class="alert alert-danger {{#if noError}}hidden{{/if}}">
-          {{errMsg}}
+<div class="customer-forms-container">
+  <div class="box-shadow">
+    <div id="charge-error" class="alert alert-danger {{#if noError}}hidden{{/if}}">
+      {{errMsg}}
+    </div>
+        <form action="/checkout-business" method="post" id="checkout-form-business" class="customer-forms">
+        <legend>
+          <h3>Checkout</h3>
+          <h4>Your Total: £{{ total }}</h4>
+          <input type="checkbox" id="business-customer" onclick="visibilityCounter()">
+          <label for="business-customer"><h5>Pay with a Purchase Order Number</h5></label>
+        </legend>
+        <div class="custom-col-d-12">
+          <div class="custom-col-d-6">
+            <label for="firstNameBusiness">First Name</label>
+            <input type="text" id="firstNameBusiness" class="form-in-half" name="firstNameBusiness" value={{user.firstname}}><!-- put requireds back in? -->
+          </div>
+          <div class="custom-col-d-6">
+            <label for="lastNameBusiness">Last Name</label>
+            <input type="text" id="lastNameBusiness" class="form-in-half" name="lastNameBusiness" value={{user.lastname}}><!-- put requireds back in? -->
+          </div>
         </div>
-
-        <input type="checkbox" id="business-customer" onclick="visibilityCounter()">
-        <label for="business-customer">Pay with a Purchase Order Number</label>
-
-        <style>#po-payment-business{display:none;}</style>
-        <script>
-           $("document").ready(function(){
-             $("#business-customer").on("click",function(){
-               $("#po-payment-business").toggle();
-               $('#po-payment-business').prop('required',true);
-               $('#card-name-business-div').toggle();
-               $('#cardNumberBusiness-div').toggle();
-               $('#card-month-business-div').toggle();
-               $('#card-year-business-div').toggle();
-               $('#card-cvc-business-div').toggle();
-             })
-           });
-        </script>
-
-        <form action="/checkout-business" method="post" id="checkout-form-business">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        <label for="nameBusiness">Name</label>
-                        <input type="text" id="nameBusiness" class="form-control" name="nameBusiness"><!-- put requireds back in? -->
-
-        <form action="/checkout-business" method="post" id="checkout-form-business">
-            <div class="row">
-              <div class="col-xs-12">
-                  <div class="form-group">
-                      <label for="companyNameBusiness">Name</label>
-                      <input type="text" id="companyNameBusiness" class="form-control" name="companyNameBusiness" value={{user.companyname}}><!-- put requireds back in? -->
-                  </div>
-              </div>
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        <label for="firstNameBusiness">First Name</label>
-                        <input type="text" id="firstNameBusiness" class="form-control" name="firstNameBusiness" value={{user.firstname}}><!-- put requireds back in? -->
-                    </div>
-                </div>
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        <label for="lastNameBusiness">Last Name</label>
-                        <input type="text" id="lastNameBusiness" class="form-control" name="lastNameBusiness" value={{user.lastname}}><!-- put requireds back in? -->
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        <label for="firstlineofaddressBusiness">Address</label>
-                        <input type="text" id="firstlineofaddressBusiness" class="form-control" name="firstlineofaddressBusiness" value={{user.firstlineofaddress}}>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        <label for="townBusiness">Town</label>
-                        <input type="text" id="townBusiness" class="form-control" name="townBusiness" value={{user.town}}>
-
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="form-group">
-
-                        <label for="addressBusiness">Address</label>
-                        <input type="text" id="addressBusiness" class="form-control" name="addressBusiness">
-
-                        <label for="postcodeBusiness">Postcode</label>
-                        <input type="text" id="postcodeBusiness" class="form-control" name="postcodeBusiness" value={{user.postcode}}>
-
-                    </div>
-                </div>
-                <hr>
-                <div class="col-xs-12" id="card-name-business-div">
-                    <div class="form-group">
-                        <label for="card-name-business">Card Holder Name</label>
-                        <input type="text" id="card-name-business" class="form-control">
-                    </div>
-                </div>
-                <div class="col-xs-12" id="cardNumberBusiness-div">
-                    <div class="form-group">
-                        <label for="cardNumberBusiness">Credit Card Number</label>
-                        <input type="text" id="cardNumberBusiness" class="form-control">
-                    </div>
-                </div>
-                <div class="col-xs-12" id="card-month-business-div">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                <label for="card-expiry-month-business">Expiration Month</label>
-                                <input type="text" id="card-expiry-month-business" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-xs-6" id="card-year-business-div">
-                            <div class="form-group">
-                                <label for="card-expiry-year-business">Expiration Year</label>
-                                <input type="text" id="card-expiry-year-business" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12" id="card-cvc-business-div">
-                    <div class="form-group">
-                        <label for="card-cvc-business">CVC</label>
-                        <input type="text" id="card-cvc-business" class="form-control">
-                    </div>
-                </div>
-                <div class="col-xs-12" id="po-payment-business">
-                    <div class="form-group">
-                        <label for="purchaseOrderNoBusiness">Purchase Order Number</label>
-                        <input type="text" id="purchaseOrderNoBusiness" class="form-control" name="purchaseOrderNoBusiness">
-                    </div>
-                </div>
+          <label for="firstlineofaddressBusiness">First Line of Address</label>
+          <input type="text" id="firstlineofaddressBusiness" class="form-in" name="firstlineofaddressBusiness" value={{user.firstlineofaddress}}>
+          <label for="townBusiness">Town</label>
+          <input type="text" id="townBusiness" class="form-in" name="townBusiness" value={{user.town}}>
+          <label for="postcodeBusiness">Postcode</label>
+          <input type="text" id="postcodeBusiness" class="form-in" name="postcodeBusiness" value={{user.postcode}}>
+          <div id="card-name-business-div">
+            <label for="card-name-business">Card Holder Name</label>
+            <input type="text" id="card-name-business" class="form-in">
+          </div>
+         <div id="cardNumberBusiness-div">
+            <label for="cardNumberBusiness">Credit Card Number</label>
+            <input type="text" id="cardNumberBusiness" class="form-in">
+          </div>
+          <div class="custom-col-d-12">
+            <div class="custom-col-d-6" id="card-month-business-div">
+              <label for="card-expiry-month-business">Expiration Month</label>
+              <input type="text" id="card-expiry-month-business" class="form-in-half">
             </div>
-            <button type="submit" class="btn btn-success">Buy now</button>
+            <div class="custom-col-d-6" id="card-year-business-div">
+              <label for="card-expiry-year-business">Expiration Year</label>
+              <input type="text" id="card-expiry-year-business" class="form-in-half">
+            </div>
+          </div>
+          <div id="card-cvc-business-div">
+            <label for="card-cvc-business">CVC</label>
+            <input type="text" id="card-cvc-business" class="form-in">
+          </div>
+          <div id="po-payment-business">
+            <label for="purchaseOrderNoBusiness">Purchase Order Number</label>
+            <input type="text" id="purchaseOrderNoBusiness" class="form-in" name="purchaseOrderNoBusiness">
+          </div>
+            <button type="submit" class="sky-blue-bg submit-btn">Buy now</button>
         </form>
     </div>
 </div>
-
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript" src="javascripts/checkout.js"></script>

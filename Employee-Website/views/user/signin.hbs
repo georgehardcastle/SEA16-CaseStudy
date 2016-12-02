@@ -14,6 +14,7 @@
   {{/if}}
   <div class="box-shadow">
     <form action="/user/signin" method="post" class="signin-form">
+      <legend>Sign In</legend>
       <input type="text" id="email" name="email" class="form-in" placeholder="E-mail">
       <input type="password" id="password" name="password" class="form-in" placeholder="Password">
       <input type="hidden" name="_csrf" value="{{ csrfToken }}">
