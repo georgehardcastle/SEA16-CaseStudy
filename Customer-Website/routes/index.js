@@ -9,6 +9,7 @@ var client = require('twilio')(accountSid, authToken);
 var Cart = require('../models/cart');
 var Product = require('../models/product');
 var Order = require('../models/order');
+var Programmes = require('../models/programme');
 
 var searchCriteria = false;
 
@@ -134,7 +135,7 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
     order.save(function(err, result) {
       req.flash('success', 'Successfully bought product!');
       req.session.cart = null;
-      res.redirect('/');
+      res.redirect('/confirmation');
     });
 
     var toSmsNumber = "+44" + req.user.contactnumber.substring(1,req.user.contactnumber.length);
@@ -191,7 +192,7 @@ router.post('/checkout-business', isLoggedIn, function(req, res, next) {
       order.save(function(err, result) {
         req.flash('success', 'Successfully bought product!');
         req.session.cart = null;
-        res.redirect('/');
+        res.redirect('/confirmation');
       });
     });
   }
@@ -216,7 +217,7 @@ router.post('/checkout-business', isLoggedIn, function(req, res, next) {
     order.save(function(err, result) {
       req.flash('success', 'Successfully bought product!');
       req.session.cart = null;
-      res.redirect('/');
+      res.redirect('/confirmation');
     });
   }
 })
@@ -266,6 +267,30 @@ router.post('/cancel-order', isLoggedIn, function(req, res, next) {
 });
   res.redirect('/user/profile');
 
+});
+
+
+router.get('/confirmation', function(req, res, next) {
+
+ var successMsg = req.flash('success')[0];
+  var category = "";
+
+  if (req.user.accounttype == "businesscustomer") {
+    category = "Atlantic";
+  }
+  else {
+   category = "Football";
+  }
+
+  Programmes.find({category: category},function(err, docs) {
+    var productChunks = [];
+    var chunkSize = 3;
+    for (var i = 0; i < docs.length; i += chunkSize) {
+      productChunks.push(docs.slice(i, i + chunkSize));
+    }
+
+    res.render('shop/confirmation', {title: "TV Programmes you might like...", products: productChunks, successMsg: successMsg, noMessage: !successMsg});
+  })
 });
 
 

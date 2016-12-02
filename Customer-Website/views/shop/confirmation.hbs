@@ -1,0 +1,28 @@
+<div id="index-hero">
+
+  <div class="custom-col-t-12">
+    <div class="alert-img-overlay" {{#if noMessage}}hidden{{/if}}>
+      {{ successMsg }}
+      <h1>Programmes we think you'll love...</h1>
+    </div>
+  </div>
+</div>
+
+<div class="custom-row thumbnail-grp-container radial-bg">
+{{# each products }}
+    {{# each this }}
+      <div class="custom-col-t-6 custom-col-d-4 thumbnail-container">
+        <div class="product-thumbnail">
+            <img class="product-thumbnail-img" src="{{ this.imagePath }}" alt="...">
+            <div class="product-thumbnail-info">
+              <h3>{{ this.title }}</h3>
+              <p>{{ this.schedule }}</p>
+              <p>{{ this.description  }}</p>
+            </div>
+          </div>
+      </div>
+    {{/each}}
+{{/each}}
+</div>
+{{cart}}
+<!-- <script src="javascripts/search.js"></script> -->
