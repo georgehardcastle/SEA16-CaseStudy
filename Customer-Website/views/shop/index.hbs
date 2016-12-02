@@ -1,0 +1,80 @@
+<div id="index-hero">
+  <div class="search-box">
+    <form action="/search/" method="post">
+        <input name="search" type="text" placeholder="Search Experiences"><button type="submit" class="sky-blue-bg"><i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
+    </form>
+  </div>
+  <div class="custom-col-t-12">
+    <div class="alert-img-overlay" {{#if noMessage}}hidden{{/if}}>
+      {{ successMsg }}
+    </div>
+  </div>
+</div>
+
+<script>
+
+$( document ).ready(function() {
+  $(".thumbnail-container").click(function() {
+    var id = $(this).find(".thumbnail-id").html();
+    $("#product-thumbnail-grp").find("div.display").addClass("display-none");
+    $("#"+id).removeClass("display-none");
+    $("#"+id).addClass("display");
+  })
+  $(".product-master-cross").click(function() {
+    $("#product-thumbnail-grp").find("div.display").addClass("display-none");
+  })
+
+  $(".add-to-basket-btn").click(function() {
+    var proId = $(this).siblings(".product-id").html();
+    $.get("/add-to-cart/" + proId,function( data ) {
+      var currentInCart = $("#cart-badge").html();
+      if (currentInCart == "") {
+        var nowInCart = 1;
+      } else {
+        var nowInCart = parseInt(currentInCart) + 1;
+      }
+      $("#cart-badge").html(nowInCart);
+    });
+  })
+
+});
+
+
+</script>
+
+<div id="product-thumbnail-grp" class="custom-row thumbnail-grp-container radial-bg">
+{{# each products }}
+    {{# each this }}
+      <div class="custom-col-m-6 custom-col-d-4 thumbnail-container">
+        <div class="product-thumbnail pointer">
+            <div class="product-thumbnail-img-container">
+              <div class="product-thumbnail-img" style="background: url({{ this.imagePath }}) no-repeat center center; background-size: cover;"></div>
+            </div>
+            <div class="product-thumbnail-info">
+              <h3>{{ this.title }}</h3>
+              <p class="thumbnail-id display-none">{{this.id}}</p>
+            </div>
+          </div>
+      </div>
+
+      <div class="master-container">
+        <div id="{{this._id}}" class="product-master display-none box-shadow-severe">
+          <div class="product-master-cross"><i class="pointer fa fa-times fa-2x" aria-hidden="true"></i></div>
+          <div class="product-master-img-container  custom-col-m-6 custom-col-d-4">
+            <div class="product-master-img" style="background: url({{ this.imagePath }}) no-repeat center center; background-size: cover;"></div>
+            </div>
+            <div class="product-master-info custom-col-m-6 custom-col-d-8">
+              <h3>{{ this.title }}</h3>
+              <p>{{ this.description  }}</p>
+              <div>
+                <div class="product-price">£{{ this.price }}</div>
+                <div class="add-to-basket-btn pointer" style="color: white">Add to Basket</div>
+                <p class="display-none product-id">{{this._id}}</p>
+              </div>
+              <div><i>{{ this.stockLevel }} in stock</i></div>
+            </div>
+          </div>
+      </div>
+    {{/each}}
+{{/each}}
+</div>

@@ -3,36 +3,89 @@
 <div class="spacer-100"></div>
 <div class="radial-bg-whiter fixed-bg"></div>
 <div class="custom-col-d-4 dash-tile">
+  <div class="tile-tab sky-blue-bg">Customers</div>
   <div class="box-shadow">
   <div class="g-search-box-container">
       <input id="customer-search-input" class="g-search-box-input" name="search" type="text" placeholder="Search Customers"><button id="customer-search-submit" type="submit" class="sky-blue-bg g-search-box-submit"><i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
   </div>
-    <div class="dash-info-container">
+    <div class="dash-info-container-btm-btn" style="padding:0; height: 540px">
       <div id="customer-details"></div>
     </div>
+    <button id="change-customer-details" class="sky-blue-bg submit-btn" type="submit" style="width:100%; height: 45px;">View/Update Customer Information</button>
+
   </div>
 </div>
 
-<div class="custom-col-d-4 dash-tile">
-  <div class="box-shadow">
-    <div id="customer-order" class="dash-info-container-no-search">
-      <h2 class="dash-tile-no-content">No Orders</h2>
-    </div>
-  </div>
-</div>
 
 <div class="custom-col-d-4 dash-tile">
+  <div class="tile-tab sky-blue-bg">Products</div>
     <div class="box-shadow">
   <div class="g-search-box-container">
       <input id="catalog-search-input" class="g-search-box-input" name="search" type="text" placeholder="Search Catalog"><button id="catalog-search-submit" type="submit" class="sky-blue-bg g-search-box-submit"><i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
   </div>
 
-    <div class="dash-info-container">
+    <div class="dash-info-container" style="height:585px">
       <div id="catalog-details"></div>
     </div>
   </div>
 </div>
 
+<<<<<<< HEAD
+<div class="custom-col-d-4 dash-tile">
+  <div class="tile-tab sky-blue-bg">Create Order</div>
+  <div class="box-shadow">
+    <div id="customer-order-details" class="dash-info-container" style="height:380px">
+      <h4 class="display-none">Customer Details</h4><div id="customer-order-customer-details"></div>
+      <h4 class="display-none">Items in Order</h4><div id="customer-order-product-details"></div>
+      <div id="customer-order-checkout-details">
+
+      </div>
+    </div>
+    <div id="payment-form">
+      <h4 id="customer-order-cart-total"> Total: £0 </h4>
+      <input type="number" class="form-in" placeholder="Card Number">
+      <input type="number" class="form-in" style="width:25%;" placeholder="Month"><input type="number" class="form-in" style="width:25%;" placeholder="Year"><input type="number" class="form-in" style="width:50%;" placeholder="CVC">
+
+    </div>
+    <button id="place-order-btn" class="sky-blue-bg submit-btn" style="width:100%; height: 45px;" type="submit">Place Order</button>
+  </div>
+</div>
+
+<div id="customer-profile" class="display-none">
+  <div id="update-delete-register" class="custom-col-d-6 dash-tile">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#update-delete-tab">Update / Delete Customer</a></li>
+      <li><a data-toggle="tab" href="#register-customer-tab">Customer Registration</a></li>
+    </ul>
+    <div class="spacer-100">
+      <div class="box-shadow">
+        <div class="dash-info-container-tabs">
+          <div class="tab-content">
+            <div id="update-delete-tab" class="tab-pane fade in active">
+              <input type="text" id="firstname-update" name="firstname-update" class="form-in" placeholder="First Name" value={{this.firstname}}>
+              <input type="text" id="lastname-update" name="lastname-update" class="form-in" placeholder="Last Name"  value={{this.lastname }}>
+              <input type="text" id="firstlineofaddress-update" name="firstlineofaddress-update" class="form-in" placeholder="Address"  value={{this.firstlineofaddress}}>
+              <input type="text" id="town-update" name="town-update" class="form-in" placeholder="Town" value={{this.town}}>
+              <input type="text" id="postcode-update" name="postcode-update" class="form-in" placeholder="Postcode"  value={{this.postcode}}>
+              <input type="text" id="contactnumber-update" name="contactnumber-update" class="form-in" placeholder="Contact Number"  value={{this.contactnumber}}>
+              <input type="hidden" id="email-update" name="email-update" class="form-in" placeholder="E-Mail"  value={{this.email}}>
+              <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+              <button id="update-details-btn" class= "sky-blue-bg submit-btn-tab" type="submit">Update Details</button>
+              <button id="delete-btn" type="submit" class="red-bg submit-btn-tab" style="float: right;">Delete Customer</button>
+            </div>
+
+            <div id="register-customer-tab" class="tab-pane fade">
+              <input type="text" id="firstname-customer" name="firstname-customer" placeholder="First Name" class="form-in">
+              <input type="text" id="lastname-customer" name="lastname-customer" placeholder="Last Name" class="form-in">
+              <input type="text" id="firstlineofaddress-customer" name="firstlineofaddress-customer" placeholder= "Address" class="form-in">
+              <input type="text" id="town-customer" name="town-customer" placeholder="Town" class="form-in">
+              <input type="text" id="postcode-customer" name="postcode-customer" placeholder="Postcode" class="form-in">
+              <input type="text" id="contactnumber-customer" name="contactnumber-customer" placeholder="Contact Number" class="form-in">
+              <input type="text" id="email-customer" name="email-customer" placeholder="E-Mail" class="form-in">
+              <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+              <button id="register-customer-btn" class="sky-blue-bg submit-btn-tab" type="submit" >Submit</button>
+            </div>
+=======
 <div id="update-delete-register" class="custom-col-d-6 dash-tile">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#update-delete-tab">Update / Delete Customer</a></li>
@@ -78,22 +131,24 @@
             <input type="text" id="email-customer" name="email-customer" placeholder="E-Mail" class="form-in">
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
             <button id="register-customer-btn" class="sky-blue-bg submit-btn-tab" type="submit" >Submit</button>
+>>>>>>> e7b7f88288ad86703e12d1b3dd0c3564c32620b5
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="custom-col-d-6 dash-tile">
-  <div class="box-shadow">
-    <div id="customer-order-details" class="dash-info-container-no-search">
-      <div id="customer-order-customer-details" style=" background-color: white; padding: 10px;"></div>
-      <div id="customer-order-product-details"></div>
-      <div id="customer-order-checkout-details">
-        <h4 id="customer-order-cart-total"> Total: £0 </h4>
+
+
+  <div id="existing-orders" class="custom-col-d-4 dash-tile">
+    <div class="tile-tab sky-blue-bg">Existing Orders</div>
+    <div class="box-shadow">
+      <div id="customer-order" class="dash-info-container-no-search">
+        <h2 class="dash-tile-no-content">No Orders</h2>
       </div>
-      <button id="place-order-btn" class="sky-blue-bg submit-btn" type="submit">Place Order</button>
     </div>
   </div>
+
 </div>
+
+<div class="spacer-100"></div>

@@ -89,7 +89,7 @@ $( document ).ready(function() {
 
     if (cart.length == 0) {
       cart.push({id: productId, qty: 1, productPrice: productPrice, totalPrice: productPrice});
-      $( "#customer-order-product-details" ).append('<ul class="catalog-details"> ' +
+      $( "#customer-order-product-details" ).append('<ul class="catalog-details" style="padding: 10px; list-style: none"> ' +
           '<li class="product-id hidden">' + productId + '</li>' +
           '<li><strong>' + productTitle + '</strong></li>' +
           '<li>' + productDescription + '</li>' +
@@ -112,7 +112,7 @@ $( document ).ready(function() {
       }
       if (duplicateItem == false) {
         cart.push({id: productId, qty: 1, productPrice: productPrice, totalPrice: productPrice});
-        $( "#customer-order-product-details" ).append('<ul class="catalog-details"> ' +
+        $( "#customer-order-product-details" ).append('<ul class="catalog-details" style=" padding: 10px; list-style: none"> ' +
             '<li class="product-id hidden">' + productId + '</li>' +
             '<li><strong>' + productTitle + '</strong></li>' +
             '<li>' + productDescription + '</li>' +
@@ -129,7 +129,7 @@ $( document ).ready(function() {
   function addDetailsToNewOrder(name, address,town,postcode,contactnumber,email) {
     $( "#customer-order-customer-details" ).empty();
 
-    $( "#customer-order-customer-details" ).append('<ul class="customer-details"> ' +
+    $( "#customer-order-customer-details" ).append('<ul class="customer-details" style="border-bottom:1px solid rgb(225,225,225); padding: 10px; list-style: none"> ' +
         '<li><strong>' + name + '</strong></li>' +
         '<li>' + address + '</li>' +
         '<li>' + town + '</li>' +
@@ -229,6 +229,9 @@ $( document ).ready(function() {
 
   $(document).on('click', '#customer-details ul', function() {
 
+    $(this).siblings(".grey-bg").removeClass("grey-bg");
+    $(this).addClass("grey-bg");
+
     // GRAB CUSTOMER DETAILS FROM VIEW
     var name = $(this).children("li.customer-name").text();
     var address = $(this).children("li.customer-firstlineofaddress").text();
@@ -256,7 +259,12 @@ $( document ).ready(function() {
     customerString = JSON.stringify(customer);
 
     $.post( '/place-order', { viewCart: cartString, viewCustomer: customerString }, function( res ){
+      $("#customer-order-customer-details").empty();
+      $("#customer-order-product-details").empty();
+      $("#customer-order-cart-total").html(" Total: £0 ");
+      $("#payment-form input").val("");
       alert(res);
+
     })
 
   })
@@ -301,6 +309,11 @@ $( document ).ready(function() {
         alert(customer);
       });
       handleCustomerSearch();
+  });
+
+  $("#change-customer-details").click(function(e) {
+    e.preventDefault();
+    $("#customer-profile").toggleClass("display-none");
   });
 
 });

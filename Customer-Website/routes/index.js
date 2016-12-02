@@ -29,15 +29,18 @@ router.get('/', function(req, res, next) {
 
 router.get('/add-to-cart/:id', function(req, res, next) {
   var productId = req.params.id;
+  console.log(productId);
   var cart = new Cart(req.session.cart ? req.session.cart : {});
 
   Product.findById(productId, function(err, product) {
     if (err) {
-      return res.redirect('/');
+      // return res.redirect('/');
+      return res.send("error");
     }
     cart.add(product, product.id);
     req.session.cart = cart;
-    res.redirect('/');
+    res.send("success");
+    // res.redirect('/');
   })
 });
 
@@ -111,8 +114,8 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
     var order = new Order({
       user: req.user,
       cart: cart,
-      address: req.body.address,
-      name: req.body.name,
+      address: req.body.firstlineofaddress,
+      name: req.body.firstname,
       paymentId: charge.id,
       status: "Order placed"
     });
@@ -171,8 +174,8 @@ router.post('/checkout-business', isLoggedIn, function(req, res, next) {
       var order = new Order({
         user: req.user,
         cart: cart,
-        address: req.body.addressBusiness,
-        name: req.body.nameBusiness,
+        address: req.body.firstlineofaddressBusiness,
+        name: req.body.firstNameBusiness,
         paymentId: charge.id
       });
       for ( var productID in cart.items ) {
