@@ -30,7 +30,6 @@
   </div>
 </div>
 
-<<<<<<< HEAD
 <div class="custom-col-d-4 dash-tile">
   <div class="tile-tab sky-blue-bg">Create Order</div>
   <div class="box-shadow">
@@ -85,53 +84,7 @@
               <input type="hidden" name="_csrf" value="{{ csrfToken }}">
               <button id="register-customer-btn" class="sky-blue-bg submit-btn-tab" type="submit" >Submit</button>
             </div>
-=======
-<div id="update-delete-register" class="custom-col-d-6 dash-tile">
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#update-delete-tab">Update / Delete Customer</a></li>
-    <li><a data-toggle="tab" href="#register-customer-tab">Customer Registration</a></li>
-  </ul>
-  <div class="spacer-100">
-    <div class="box-shadow">
-      <div class="dash-info-container-tabs">
-        <div class="tab-content">
-          <div id="update-delete-tab" class="tab-pane fade in active">
-            <label for="firstname-update">First Name</label>
-            <input type="text" id="firstname-update" name="firstname-update" class="form-in" placeholder="First Name" value={{this.firstname}}>
-            <label for="lastname-update">Last Name</label>
-            <input type="text" id="lastname-update" name="lastname-update" class="form-in" placeholder="Last Name"  value={{this.lastname }}>
-            <label for="firstlineofaddress-update">First Line of Address</label>
-            <input type="text" id="firstlineofaddress-update" name="firstlineofaddress-update" class="form-in" placeholder="Address"  value={{this.firstlineofaddress}}>
-            <label for="town-update">Town</label>
-            <input type="text" id="town-update" name="town-update" class="form-in" placeholder="Town" value={{this.town}}>
-            <label for="postcode-update">Postcode</label>
-            <input type="text" id="postcode-update" name="postcode-update" class="form-in" placeholder="Postcode"  value={{this.postcode}}>
-            <label for="contactnumber-update">Contact Number</label>
-            <input type="text" id="contactnumber-update" name="contactnumber-update" class="form-in" placeholder="Contact Number"  value={{this.contactnumber}}>
-            <input type="hidden" id="email-update" name="email-update" class="form-in" placeholder="E-Mail"  value={{this.email}}>
-            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            <button id="update-details-btn" class= "sky-blue-bg submit-btn-tab" type="submit">Update Details</button>
-            <button id="delete-btn" type="submit" class="red-bg submit-btn-tab" style="float: right;">Delete Customer</button>
-          </div>
 
-          <div id="register-customer-tab" class="tab-pane fade">
-            <label for="firstname-customer">First Name</label>
-            <input type="text" id="firstname-customer" name="firstname-customer" placeholder="First Name" class="form-in">
-            <label for="lastname-customer">Last Name</label>
-            <input type="text" id="lastname-customer" name="lastname-customer" placeholder="Last Name" class="form-in">
-            <label for="firstlineofaddress-customer">First Line of Address</label>
-            <input type="text" id="firstlineofaddress-customer" name="firstlineofaddress-customer" placeholder= "Address" class="form-in">
-            <label for="town-customer">Town</label>
-            <input type="text" id="town-customer" name="town-customer" placeholder="Town" class="form-in">
-            <label for="postcode-customer">Postcode</label>
-            <input type="text" id="postcode-customer" name="postcode-customer" placeholder="Postcode" class="form-in">
-            <label for="contactnumber-customer">Contact Number</label>
-            <input type="text" id="contactnumber-customer" name="contactnumber-customer" placeholder="Contact Number" class="form-in">
-            <label for="email-customer">Last Name</label>
-            <input type="text" id="email-customer" name="email-customer" placeholder="E-Mail" class="form-in">
-            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            <button id="register-customer-btn" class="sky-blue-bg submit-btn-tab" type="submit" >Submit</button>
->>>>>>> e7b7f88288ad86703e12d1b3dd0c3564c32620b5
           </div>
         </div>
       </div>

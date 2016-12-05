@@ -11,6 +11,16 @@
   font-family: 'Sky-Bold';
   src: url('../fonts/Sky_Bold.ttf') format('truetype');
 }
+.cart-badge {
+
+}
+.large-txt {
+  font-size: 3rem;
+}
+.cart-price {
+  float:right;
+  font-size: 2rem;
+}
 * {
   box-sizing: border-box;
   border: 0;

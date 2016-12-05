@@ -4,10 +4,15 @@
       <ul class="list-group">
         {{# each products }}
           <li class="list-group-item">
-            <strong>{{ this.item.title }} <p class="badge">£{{ this.price }}</p></strong>
-            <a href="/reduce/{{this.item._id}}"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
-            <a href="/remove/{{this.item._id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-            <p class="badge">{{ this.qty }}</p>
+            <strong>{{ this.item.title }} </strong>
+            <p class="cart-badge"><span>Qty: </span>{{ this.qty }}</p>
+            <a href="/reduce/{{this.item._id}}"><i class="fa fa-lg fa-minus-square" aria-hidden="true"></i></a>
+
+
+            <p class="cart-price">£{{ this.price }}</p>
+
+            <a href="/remove/{{this.item._id}}"><i class="fa fa-lg fa-trash" aria-hidden="true"></i></a>
+
         </li>
         {{/each}}
       </ul>
@@ -15,7 +20,7 @@
   </div>
   <div class="row">
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-      <strong>Total: £{{ totalPrice }}</strong>
+      <strong class="large-txt">Total: £{{ totalPrice }}</strong>
     </div>
   </div>
   <hr>

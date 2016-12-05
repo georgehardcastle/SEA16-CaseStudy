@@ -92,7 +92,7 @@ $( document ).ready(function() {
       $( "#customer-order-product-details" ).append('<ul class="catalog-details" style="padding: 10px; list-style: none"> ' +
           '<li class="product-id hidden">' + productId + '</li>' +
           '<li><strong>' + productTitle + '</strong></li>' +
-          '<li>' + productDescription + '</li>' +
+          // '<li>' + productDescription + '</li>' +
           '<li>' + productPrice + ' each</li>' +
           '<li class="product-qty"> Qty: ' + 1 + '</li>' +
           '<li class="product-total"> Total: ' + productPrice + '</li>' +
@@ -115,7 +115,7 @@ $( document ).ready(function() {
         $( "#customer-order-product-details" ).append('<ul class="catalog-details" style=" padding: 10px; list-style: none"> ' +
             '<li class="product-id hidden">' + productId + '</li>' +
             '<li><strong>' + productTitle + '</strong></li>' +
-            '<li>' + productDescription + '</li>' +
+            // '<li>' + productDescription + '</li>' +
             '<li>' + productPrice + ' each</li>' +
             '<li class="product-qty"> Qty: ' + 1 + '</li>' +
             '<li class="product-total"> Total: ' + productPrice + '</li>' +
